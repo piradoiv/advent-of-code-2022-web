@@ -152,17 +152,15 @@ End
 	#tag Method, Flags = &h0
 		Function GetCaloriesByElf(input As String) As Integer()
 		  Var lines() As String = input.Split(EndOfLine)
+		  Var elves As Integer = input.CountFields(EndOfLine) + 1
 		  Var elvesCalories() As Integer
+		  elvesCalories.ResizeTo(elves)
 		  
 		  Var index As Integer
 		  For Each line As String In lines
 		    If line.Trim = "" Then
 		      index = index + 1
 		      Continue
-		    End If
-		    
-		    If elvesCalories.LastIndex < index Then
-		      elvesCalories.ResizeTo(index)
 		    End If
 		    
 		    elvesCalories(index) = elvesCalories(index) + line.Val
@@ -181,11 +179,15 @@ End
 	#tag Event
 		Sub Pressed()
 		  Var elvesCalories() As Integer = GetCaloriesByElf(InputTextArea.Text)
+		  
+		  // Part 1
 		  MaxCaloriesTextField.Text = elvesCalories(elvesCalories.LastIndex).ToString
 		  
-		  Var topThreeSum As Integer = elvesCalories(elvesCalories.LastIndex) + _
-		  elvesCalories(elvesCalories.LastIndex - 1) + _
-		  elvesCalories(elvesCalories.LastIndex - 2)
+		  // Part 2
+		  Var topThreeSum As Integer
+		  For i As Integer = 0 To 2
+		    topThreeSum = topThreeSum + elvesCalories(elvesCalories.LastIndex - i)
+		  Next
 		  
 		  TopThreeTextField.Text = topThreeSum.ToString
 		End Sub
