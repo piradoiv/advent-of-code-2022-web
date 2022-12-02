@@ -21,6 +21,7 @@ Begin WebContainer Day1Container
    Width           =   568
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebTextField MaxCaloriesTextField
       AllowAutoComplete=   False
@@ -130,7 +131,6 @@ Begin WebContainer Day1Container
       Mode            =   1
       Scope           =   2
       TabIndex        =   4
-      TabStop         =   True
       Title           =   ""
       Tooltip         =   ""
       Top             =   20
@@ -169,7 +169,6 @@ Begin WebContainer Day1Container
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   0
       TabIndex        =   5
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   278
       Visible         =   True
@@ -194,7 +193,6 @@ Begin WebContainer Day1Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   6
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   62
       Visible         =   True
@@ -224,7 +222,6 @@ Begin WebContainer Day1Container
       Multiline       =   False
       Scope           =   2
       TabIndex        =   8
-      TabStop         =   True
       Text            =   "Sum of selected rows: -"
       TextAlignment   =   0
       TextColor       =   &c00000000
@@ -253,7 +250,6 @@ Begin WebContainer Day1Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   9
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   70
       Value           =   False
