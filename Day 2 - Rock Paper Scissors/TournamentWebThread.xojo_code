@@ -10,45 +10,26 @@ Inherits WebThread
 		  For i As Integer = 0 To maxValue
 		    Var line As String = lines(i)
 		    
-		    Var parts() As String = line.Split(" ")
-		    Select Case parts(1)
-		    Case "X"
-		      Select Case parts(0)
-		      Case "A"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Scissor))
-		      Case "B"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Rock))
-		      Case "C"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Paper))
-		      End Select
-		    Case "Y"
-		      Select Case parts(0)
-		      Case "A"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Rock))
-		      Case "B"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Paper))
-		      Case "C"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Scissor))
-		      End Select
-		    Case "Z"
-		      Select Case parts(0)
-		      Case "A"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Paper))
-		      Case "B"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Scissor))
-		      Case "C"
-		        matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Rock))
-		      End Select
+		    Select Case line
+		    Case "A X"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Scissor))
+		    Case "B X"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Rock))
+		    Case "C X"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Paper))
+		    Case "A Y"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Rock))
+		    Case "B Y"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Paper))
+		    Case "C Y"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Scissor))
+		    Case "A Z"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Paper))
+		    Case "B Z"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Scissor))
+		    Case "C Z"
+		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Rock))
 		    End Select
-		    
-		    If i Mod 250 = 0 Then
-		      Var update As New Dictionary
-		      Var progress As Integer = i / lines.LastIndex * 100
-		      update.Value("type") = "status"
-		      update.Value("max_value") = maxValue
-		      update.Value("progress") = progress
-		      AddUserInterfaceUpdate(update)
-		    End If
 		  Next
 		  
 		  Var totalScore As Integer
