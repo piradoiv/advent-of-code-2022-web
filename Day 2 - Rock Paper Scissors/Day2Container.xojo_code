@@ -42,7 +42,6 @@ Begin WebContainer Day2Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -67,7 +66,6 @@ Begin WebContainer Day2Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   1
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   95
       Visible         =   True
@@ -106,7 +104,6 @@ Begin WebContainer Day2Container
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   0
       TabIndex        =   2
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -136,7 +133,6 @@ Begin WebContainer Day2Container
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   3
-      TabStop         =   True
       Text            =   "0"
       TextAlignment   =   0
       Tooltip         =   ""
@@ -149,25 +145,17 @@ Begin WebContainer Day2Container
       DebugIdentifier =   ""
       Index           =   -2147483648
       Input           =   ""
-      Left            =   92.0
       LockedInPosition=   False
       Priority        =   5
       Scope           =   2
       StackSize       =   0
-      TabIndex        =   4
-      TabStop         =   True
       ThreadID        =   0
       ThreadState     =   ""
-      Top             =   95.0
    End
    Begin TournamentDataSource TournamentData
       Index           =   -2147483648
-      Left            =   92.0
       LockedInPosition=   False
       Scope           =   2
-      TabIndex        =   6
-      TabStop         =   True
-      Top             =   95.0
    End
    Begin WebChart ResultChart
       ControlID       =   ""
@@ -189,7 +177,6 @@ Begin WebContainer Day2Container
       Mode            =   2
       Scope           =   2
       TabIndex        =   6
-      TabStop         =   True
       Title           =   "Match Stats"
       Tooltip         =   ""
       Top             =   20
@@ -241,7 +228,7 @@ End
 		  
 		  ResultChart.RemoveAllDatasets
 		  ResultChart.RemoveAllLabels
-		  ResultChart.AddLabels("Rock", "Paper", "Scissors")
+		  ResultChart.AddLabels("🪨 Rock", "📜 Paper", "✂️ Scissors")
 		  Var won() As Double = Array(rockWon, paperWon, scissorsWon)
 		  Var draw() As Double = Array(rockDraw, paperDraw, scissorsDraw)
 		  Var lost() As Double = Array(rockLost, paperLost, scissorsLost)

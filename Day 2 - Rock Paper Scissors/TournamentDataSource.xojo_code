@@ -21,11 +21,11 @@ Implements WebDataSource
 		Function FigureToString(figure As TournamentMatch.Figures) As String
 		  Select Case figure
 		  Case TournamentMatch.Figures.Rock
-		    Return "👊 Rock"
+		    Return "🪨 Rock"
 		  Case TournamentMatch.Figures.Paper
-		    Return "✋ Paper"
+		    Return "📜 Paper"
 		  Case TournamentMatch.Figures.Scissor
-		    Return "✌️ Scissors"
+		    Return "✂️ Scissors"
 		  End Select
 		End Function
 	#tag EndMethod
