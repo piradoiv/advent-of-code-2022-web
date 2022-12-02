@@ -68,25 +68,7 @@ Protected Class TournamentMatch
 
 	#tag Method, Flags = &h0
 		Function Score() As Integer
-		  Var score As Integer
-		  
-		  Select Case Result
-		  Case Results.Lost
-		    score = 0
-		  Case Results.Draw
-		    score = 3
-		  Case Results.Won
-		    score = 6
-		  End Select
-		  
-		  Select Case Player
-		  Case Figures.Rock
-		    Return score + 1
-		  Case Figures.Paper
-		    Return score + 2
-		  Case Figures.Scissor
-		    Return score + 3
-		  End Select
+		  Return Integer(Result) + Integer(Player)
 		End Function
 	#tag EndMethod
 
@@ -101,15 +83,15 @@ Protected Class TournamentMatch
 
 
 	#tag Enum, Name = Figures, Type = Integer, Flags = &h0
-		Rock
+		Rock = 1
 		  Paper
 		Scissor
 	#tag EndEnum
 
 	#tag Enum, Name = Results, Type = Integer, Flags = &h0
 		Lost
-		  Draw
-		Won
+		  Draw = 3
+		Won = 6
 	#tag EndEnum
 
 
@@ -159,13 +141,21 @@ Protected Class TournamentMatch
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Figures"
+			Type="TournamentMatch.Figures"
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Rock"
 				"1 - Paper"
 				"2 - Scissor"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Opponent"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="TournamentMatch.Figures"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
