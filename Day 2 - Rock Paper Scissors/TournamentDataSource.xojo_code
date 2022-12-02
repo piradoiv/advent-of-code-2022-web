@@ -74,7 +74,7 @@ Implements WebDataSource
 		    
 		    row.Value("id") = id.ToString
 		    row.Value("opponent") = FigureToString(Matches(i).Opponent)
-		    row.Value("you") = FigureToString(Matches(i).You)
+		    row.Value("you") = FigureToString(Matches(i).Player)
 		    Var resultCell As String
 		    Select Case Matches(i).Result
 		    Case TournamentMatch.Results.Lost

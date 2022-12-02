@@ -208,7 +208,7 @@ End
 		  Var rockDraw, paperDraw, scissorsDraw As Double
 		  Var rockLost, paperLost, scissorsLost As Double
 		  For Each match As TournamentMatch In matches
-		    Select Case match.You
+		    Select Case match.Player
 		    Case TournamentMatch.Figures.Rock
 		      Select Case match.Result
 		      Case TournamentMatch.Results.Won

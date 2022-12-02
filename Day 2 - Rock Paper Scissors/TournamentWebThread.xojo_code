@@ -5,31 +5,9 @@ Inherits WebThread
 		Sub Run()
 		  Var lines() As String = input.Split(EndOfLine)
 		  Var matches() As TournamentMatch
-		  Var maxValue As Integer = lines.LastIndex
 		  
-		  For i As Integer = 0 To maxValue
-		    Var line As String = lines(i)
-		    
-		    Select Case line
-		    Case "A X"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Scissor))
-		    Case "B X"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Rock))
-		    Case "C X"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Paper))
-		    Case "A Y"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Rock))
-		    Case "B Y"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Paper))
-		    Case "C Y"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Scissor))
-		    Case "A Z"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Rock, TournamentMatch.Figures.Paper))
-		    Case "B Z"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Paper, TournamentMatch.Figures.Scissor))
-		    Case "C Z"
-		      matches.Add(New TournamentMatch(TournamentMatch.Figures.Scissor, TournamentMatch.Figures.Rock))
-		    End Select
+		  For i As Integer = 0 To lines.LastIndex
+		    matches.Add(New TournamentMatch(lines(i)))
 		  Next
 		  
 		  Var totalScore As Integer

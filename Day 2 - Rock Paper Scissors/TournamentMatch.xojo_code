@@ -1,9 +1,34 @@
 #tag Class
 Protected Class TournamentMatch
 	#tag Method, Flags = &h0
-		Sub Constructor(opponent As Figures, you As Figures)
+		Sub Constructor(opponent As Figures, player As Figures)
 		  Self.Opponent = opponent
-		  Self.You = you
+		  Self.Player = player
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(line As String)
+		  Select Case line
+		  Case "A X"
+		    Constructor(Figures.Rock, Figures.Scissor)
+		  Case "B X"
+		    Constructor(Figures.Paper, Figures.Rock)
+		  Case "C X"
+		    Constructor(Figures.Scissor, Figures.Paper)
+		  Case "A Y"
+		    Constructor(Figures.Rock, Figures.Rock)
+		  Case "B Y"
+		    Constructor(Figures.Paper, Figures.Paper)
+		  Case "C Y"
+		    Constructor(Figures.Scissor, Figures.Scissor)
+		  Case "A Z"
+		    Constructor(Figures.Rock, Figures.Paper)
+		  Case "B Z"
+		    Constructor(Figures.Paper, Figures.Scissor)
+		  Case "C Z"
+		    Constructor(Figures.Scissor, Figures.Rock)
+		  End Select
 		End Sub
 	#tag EndMethod
 
@@ -11,7 +36,7 @@ Protected Class TournamentMatch
 		Function Result() As Results
 		  Select Case Opponent
 		  Case Figures.Rock
-		    Select Case You
+		    Select Case Player
 		    Case Figures.Rock
 		      Return Results.Draw
 		    Case Figures.Paper
@@ -20,7 +45,7 @@ Protected Class TournamentMatch
 		      Return Results.Lost
 		    End Select
 		  Case Figures.Paper
-		    Select Case You
+		    Select Case Player
 		    Case Figures.Rock
 		      Return Results.Lost
 		    Case Figures.Paper
@@ -29,7 +54,7 @@ Protected Class TournamentMatch
 		      Return Results.Won
 		    End Select
 		  Case Figures.Scissor
-		    Select Case You
+		    Select Case Player
 		    Case Figures.Rock
 		      Return Results.Won
 		    Case Figures.Paper
@@ -54,7 +79,7 @@ Protected Class TournamentMatch
 		    score = 6
 		  End Select
 		  
-		  Select Case You
+		  Select Case Player
 		  Case Figures.Rock
 		    Return score + 1
 		  Case Figures.Paper
@@ -71,7 +96,7 @@ Protected Class TournamentMatch
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		You As TournamentMatch.Figures
+		Player As TournamentMatch.Figures
 	#tag EndProperty
 
 
@@ -130,7 +155,7 @@ Protected Class TournamentMatch
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="You"
+			Name="Player"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
