@@ -21,11 +21,11 @@ Implements WebDataSource
 		Function FigureToString(figure As TournamentMatch.Figures) As String
 		  Select Case figure
 		  Case TournamentMatch.Figures.Rock
-		    Return "Rock"
+		    Return "👊 Rock"
 		  Case TournamentMatch.Figures.Paper
-		    Return "Paper"
+		    Return "✋ Paper"
 		  Case TournamentMatch.Figures.Scissor
-		    Return "Scissors"
+		    Return "✌️ Scissors"
 		  End Select
 		End Function
 	#tag EndMethod
@@ -75,9 +75,16 @@ Implements WebDataSource
 		    row.Value("id") = id.ToString
 		    row.Value("opponent") = FigureToString(Matches(i).Opponent)
 		    row.Value("you") = FigureToString(Matches(i).You)
-		    Var cellRenderer As New WebListBoxStyleRenderer(style, ResultToString(Matches(i).Result))
-		    cellRenderer.CellOnly = False
-		    row.Value("result") = cellRenderer
+		    Var resultCell As String
+		    Select Case Matches(i).Result
+		    Case TournamentMatch.Results.Lost
+		      resultCell = "🔴 Lost"
+		    Case TournamentMatch.Results.Draw
+		      resultCell = "🟡 Draw"
+		    Case TournamentMatch.Results.Won
+		      resultCell = "🟢 Won"
+		    End Select
+		    row.Value("result") = resultCell
 		    row.Value("score") = Matches(i).Score.ToString
 		    result.Add(row)
 		  Next

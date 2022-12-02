@@ -3,7 +3,7 @@ Begin WebContainer Day2Container
    Compatibility   =   ""
    ControlID       =   ""
    Enabled         =   True
-   Height          =   354
+   Height          =   544
    Indicator       =   0
    LayoutDirection =   0
    LayoutType      =   0
@@ -18,21 +18,21 @@ Begin WebContainer Day2Container
    TabIndex        =   0
    Top             =   0
    Visible         =   True
-   Width           =   834
+   Width           =   1018
    _mDesignHeight  =   0
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
    Begin WebButton InputButton
       AllowAutoDisable=   False
       Cancel          =   False
-      Caption         =   "Tournament"
+      Caption         =   "Begin Tournament"
       ControlID       =   ""
       Default         =   True
       Enabled         =   True
       Height          =   38
       Index           =   -2147483648
       Indicator       =   1
-      Left            =   690
+      Left            =   828
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -46,7 +46,7 @@ Begin WebContainer Day2Container
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
-      Width           =   124
+      Width           =   170
       _mPanelIndex    =   -1
    End
    Begin PuzzleInputWebDialog InputDialog
@@ -57,7 +57,7 @@ Begin WebContainer Day2Container
       Indicator       =   0
       LayoutDirection =   0
       LayoutType      =   0
-      Left            =   249
+      Left            =   341
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -69,7 +69,7 @@ Begin WebContainer Day2Container
       TabIndex        =   1
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   0
+      Top             =   95
       Visible         =   True
       Width           =   640
       _mDesignHeight  =   0
@@ -82,7 +82,7 @@ Begin WebContainer Day2Container
       ControlID       =   ""
       Enabled         =   True
       HasHeader       =   True
-      Height          =   314
+      Height          =   504
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
@@ -94,7 +94,7 @@ Begin WebContainer Day2Container
       LockedInPosition=   False
       LockHorizontal  =   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
@@ -110,7 +110,7 @@ Begin WebContainer Day2Container
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
-      Width           =   652
+      Width           =   630
       _mPanelIndex    =   -1
    End
    Begin WebTextField ScoreTextField
@@ -124,7 +124,7 @@ Begin WebContainer Day2Container
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   690
+      Left            =   828
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -142,21 +142,23 @@ Begin WebContainer Day2Container
       Tooltip         =   ""
       Top             =   77
       Visible         =   True
-      Width           =   124
+      Width           =   170
       _mPanelIndex    =   -1
    End
    Begin TournamentWebThread TournamentThread
       DebugIdentifier =   ""
       Index           =   -2147483648
       Input           =   ""
+      Left            =   92.0
       LockedInPosition=   False
       Priority        =   5
-      Scope           =   0
+      Scope           =   2
       StackSize       =   0
       TabIndex        =   4
       TabStop         =   True
       ThreadID        =   0
       ThreadState     =   ""
+      Top             =   95.0
    End
    Begin WebProgressWheel Spinner
       Colorize        =   False
@@ -165,7 +167,7 @@ Begin WebContainer Day2Container
       Height          =   32
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   690
+      Left            =   828
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -173,13 +175,13 @@ Begin WebContainer Day2Container
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      Scope           =   0
+      Scope           =   2
       SVGColor        =   &c09030000
       SVGData         =   ""
       TabIndex        =   5
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   161
+      Top             =   162
       Visible         =   False
       Width           =   32
       _mPanelIndex    =   -1
@@ -194,7 +196,7 @@ Begin WebContainer Day2Container
       Indeterminate   =   False
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   730
+      Left            =   868
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -203,22 +205,53 @@ Begin WebContainer Day2Container
       LockTop         =   True
       LockVertical    =   False
       MaximumValue    =   100
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   4
       TabStop         =   True
       Tooltip         =   ""
       Top             =   169
       Value           =   0
       Visible         =   False
-      Width           =   84
+      Width           =   130
       _mPanelIndex    =   -1
    End
    Begin TournamentDataSource TournamentData
       Index           =   -2147483648
+      Left            =   92.0
       LockedInPosition=   False
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   6
       TabStop         =   True
+      Top             =   95.0
+   End
+   Begin WebChart ResultChart
+      ControlID       =   ""
+      DatasetCount    =   0
+      Enabled         =   True
+      HasAnimation    =   False
+      HasLegend       =   True
+      Height          =   211
+      Index           =   -2147483648
+      Indicator       =   ""
+      Left            =   658
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      Mode            =   2
+      Scope           =   2
+      TabIndex        =   6
+      TabStop         =   True
+      Title           =   "Match Stats"
+      Tooltip         =   ""
+      Top             =   20
+      Visible         =   False
+      Width           =   153
+      _mMode          =   ""
+      _mPanelIndex    =   -1
    End
 End
 #tag EndWebContainerControl
@@ -292,6 +325,52 @@ End
 		      Var matches() As TournamentMatch = update.Value("matches")
 		      TournamentData.Matches = matches
 		      ResultListBox.ReloadData
+		      
+		      Var rockWon, paperWon, scissorsWon As Double
+		      Var rockDraw, paperDraw, scissorsDraw As Double
+		      Var rockLost, paperLost, scissorsLost As Double
+		      For Each match As TournamentMatch In matches
+		        Select Case match.You
+		        Case TournamentMatch.Figures.Rock
+		          Select Case match.Result
+		          Case TournamentMatch.Results.Won
+		            rockWon = rockWon + 1
+		          Case TournamentMatch.Results.Draw
+		            rockDraw = rockDraw + 1
+		          Case TournamentMatch.Results.Lost
+		            rockLost = rockLost + 1
+		          End Select
+		        Case TournamentMatch.Figures.Paper
+		          Select Case match.Result
+		          Case TournamentMatch.Results.Won
+		            paperWon = paperWon + 1
+		          Case TournamentMatch.Results.Draw
+		            paperDraw = paperDraw + 1
+		          Case TournamentMatch.Results.Lost
+		            paperLost = paperLost + 1
+		          End Select
+		        Case TournamentMatch.Figures.Scissor
+		          Select Case match.Result
+		          Case TournamentMatch.Results.Won
+		            scissorsWon = scissorsWon + 1
+		          Case TournamentMatch.Results.Draw
+		            scissorsDraw = scissorsDraw + 1
+		          Case TournamentMatch.Results.Lost
+		            scissorsLost = scissorsLost + 1
+		          End Select
+		        End Select
+		      Next
+		      
+		      ResultChart.RemoveAllDatasets
+		      ResultChart.RemoveAllLabels
+		      ResultChart.AddLabels("Rock", "Paper", "Scissors")
+		      Var won() As Double = Array(rockWon, paperWon, scissorsWon)
+		      Var draw() As Double = Array(rockDraw, paperDraw, scissorsDraw)
+		      Var lost() As Double = Array(rockLost, paperLost, scissorsLost)
+		      ResultChart.AddDataset(New WebChartCircularDataset("Defeats", lost, Array(Color.Red)))
+		      ResultChart.AddDataset(New WebChartCircularDataset("Draws", draw, Array(Color.Yellow)))
+		      ResultChart.AddDataset(New WebChartCircularDataset("Victories", won, Array(Color.Green)))
+		      ResultChart.Visible = True
 		    End Select
 		  Next
 		End Sub
