@@ -70,9 +70,9 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelCount      =   2
+      PanelCount      =   3
       Scope           =   2
-      SelectedPanelIndex=   1
+      SelectedPanelIndex=   2
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -127,11 +127,41 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   1
+         PanelIndex      =   "1"
          Parent          =   "Pages"
          Scope           =   2
          ScrollDirection =   0
          TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day3Container Day3
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   2
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   4
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -151,7 +181,7 @@ End
 #tag Events MainToolbar
 	#tag Event
 		Sub Opening()
-		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors")
+		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer")
 		  
 		  For i As Integer = 0 To sections.LastIndex
 		    Var button As New WebToolbarButton(sections(i))
@@ -169,7 +199,7 @@ End
 #tag Events Pages
 	#tag Event
 		Sub Opening()
-		  Me.SelectedPanelIndex = 1
+		  Me.SelectedPanelIndex = 2
 		End Sub
 	#tag EndEvent
 #tag EndEvents
