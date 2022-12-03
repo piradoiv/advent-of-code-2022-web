@@ -42,7 +42,6 @@ Begin WebContainer Day3Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -67,7 +66,6 @@ Begin WebContainer Day3Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   1
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   85
       Visible         =   True
@@ -77,7 +75,7 @@ Begin WebContainer Day3Container
       _mPanelIndex    =   -1
    End
    Begin WebListBox ExpeditionListBox
-      ColumnCount     =   4
+      ColumnCount     =   5
       ColumnWidths    =   "120,120,110,*"
       ControlID       =   ""
       Enabled         =   True
@@ -86,7 +84,7 @@ Begin WebContainer Day3Container
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
-      InitialValue    =   "Elf #	Group #	Badge	Rucksack Contents"
+      InitialValue    =   "Elf #	Group #	Badge	Compartment 1	Compartment 2"
       LastAddedRowIndex=   0
       LastRowIndex    =   0
       Left            =   20
@@ -106,7 +104,6 @@ Begin WebContainer Day3Container
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   0
       TabIndex        =   2
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -136,7 +133,6 @@ Begin WebContainer Day3Container
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   3
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -155,7 +151,7 @@ Begin WebContainer Day3Container
       Height          =   70
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Left            =   496
       LockBottom      =   False
       LockedInPosition=   False
@@ -165,11 +161,9 @@ Begin WebContainer Day3Container
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   4
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -228,7 +222,10 @@ End
 		      For Each char As String In chars
 		        contents = contents + Rucksack.GetFoodEmoji(char)
 		      Next
-		      ExpeditionListBox.AddRow(i.ToString, groupNumber.ToString, Rucksack.GetFoodEmoji(badge), contents)
+		      Var leftCompartment, rightCompartment As String
+		      leftCompartment = contents.Left(contents.Length / 2)
+		      rightCompartment = contents.Right(contents.Length / 2)
+		      ExpeditionListBox.AddRow(i.ToString, groupNumber.ToString, Rucksack.GetFoodEmoji(badge), leftCompartment, rightCompartment)
 		      i = i + 1
 		    Next
 		    groupNumber = groupNumber + 1
