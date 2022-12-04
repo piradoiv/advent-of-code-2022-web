@@ -80,7 +80,7 @@ Begin WebContainer Day3Container
       ControlID       =   ""
       Enabled         =   True
       HasHeader       =   True
-      Height          =   380
+      Height          =   167
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
@@ -105,7 +105,7 @@ Begin WebContainer Day3Container
       SelectedRowIndex=   0
       TabIndex        =   2
       Tooltip         =   ""
-      Top             =   20
+      Top             =   233
       Visible         =   True
       Width           =   454
       _mPanelIndex    =   -1
@@ -172,10 +172,48 @@ Begin WebContainer Day3Container
       Width           =   180
       _mPanelIndex    =   -1
    End
+   Begin WebChart ItemsChart
+      ControlID       =   ""
+      DatasetCount    =   0
+      Enabled         =   True
+      HasAnimation    =   False
+      HasLegend       =   False
+      Height          =   205
+      Index           =   -2147483648
+      Indicator       =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      Mode            =   0
+      Scope           =   2
+      TabIndex        =   5
+      TabStop         =   True
+      Title           =   ""
+      Tooltip         =   ""
+      Top             =   20
+      Visible         =   True
+      Width           =   454
+      _mMode          =   ""
+      _mPanelIndex    =   -1
+   End
 End
 #tag EndWebContainerControl
 
 #tag WindowCode
+	#tag Method, Flags = &h21
+		Private Function PairCompare(value1 As Pair, value2 As Pair) As Integer
+		  If value1.Right > value2.Right Then Return -1
+		  If value1.Right < value2.Right Then Return 1
+		  Return 0
+		End Function
+	#tag EndMethod
+
+
 	#tag Constant, Name = kRealData, Type = String, Dynamic = False, Default = \"LHLRlCCvCLVgHPfCHtVjBGrBDNzWFBsBGBfscGsD\nnQwbnwwpbrJBrNWB\nhmnSdSdQpTpdnlPdvddPNglLjH\nRZhwpDsNqVmQClwl\nTLJfLTPqcvTrvvLMLMlVzzvVVQQtmQCmtzmV\nMJjccdfTMcbqjNSRSZsSDZ\nLLrNNqCTCwLTttwcNctqFGmRBSBjzjbSzbBbjNbzjB\nGnhhZQPDGdldgQmQSjpzjzQssb\ngDJZPMnPnhlhJWhZntLCLcTqVMLrGVtMfM\nrrBgDBGnVnffDnfQQqngJhhSRQvhhCRRRSZbRpRzwQ\nNtLmcHPHMHHssFJphZpbhwpNRbbC\nLJPHlmdJDgrrqrnl\nnJhrcNnfrFwNhPdMQSgZSCMjQn\nLjqGWsGWllRRlHVsqGGWsZZSSHQgPmHZZSPvdPCmvQ\nzqqVTWjqBsTJprNbppFb\nzSMgWzlgFSWFcGZlCZGlrrTc\nspnQHdQmHddNmpWrpWcChccTWc\nBsRsnmBQdNWsvRPzbzbLzDVSPSbVLM\nlDfbffptlrJZTBJHjjBWjT\nLcwwgQLgzvztwtMQGCMVCHWmnmjWnGhFHnZjmZhjhT\nsCqtzsswCgccbSqrDSqbNNfN\nsnnnjwRRwGSSnVmhhVMhGFbgQgbzFFPPgQQmPbbgQd\nqCrccvcDDcvqDZlCcrcfQNQFdsbgWzFfQddQQPgQ\nZcrvrBqBTCZnBBswjwpSRs\nqSczBfBcjMZMfctsmsGmFJsmQQcQCr\nwPhTLNVNGLNdGHPHwlQsnrnmnrQvHFFHQn\ndLdwbNLRdgGbgTjZfDbqDWjftSzW\nrZwlrtRtNtlHqVBtdqQgdq\nfbwzpPwbhJzpwfTSHgdgqcJVcBjHvHdJ\nLLPbhzPpTTbTshfGhPwSFWnNmMrrZZmNmZDmWNCCZs\ntMHgMWMQWgFJTHsWMvJrVdlmvlSvdvlpvG\nRNfZZfRttBtdlZlmmmplSS\nDzzNDDRwnwwbLnMFtsMntQFM\nqHqBMNqgMwHMbnGStHSbndnt\nPwWZPjpfsDsDsPfPfjdbSvbWhdFSbFGSWFtr\nwfpjpJcfVsspzZRRszDpwcRggLTQQBLqNqcqcggLCgNmlq\nTmmFjtvFdDGjdFFJjFRDLNLHGBVcqgLcLgVBLqgV\nWbWSPSwQCWrWQSrCbwNVlLlBZLBvLlvZVqPl\nSfwbhrwQQbbMwCwWCrbwJRvptJfjDTDRvzTttRjp\njzqSMszqsbVVMVMgWhWCgMrpGgpB\nwrwLcFQmPlFFlwLZmFGTfPvWGfPvhWWWvGgf\nwRZtHFHmzNDHSqrs\nNprlCgrrnrNCjplSCtljpFrFZLzzgwmVgBzBZZPwzBPQBwVL\nHsDMvHTDfsfQZfZzmPWL\nJcPsDGTqcTqSdrSCtnCt\ncFcmfmJFtFmtlTNtLlCWTT\nQPQzjRRsVsQqBqwlTlNBpLNSWDpN\nQblgzRPgbgQsVvgPVQhgQqjvMnJfccnZddcGGfrFJMFGGF\nPWbWmFFnPFPWbDVVmmDHDFGdGhTQdLdnTZQZZcGSGGdQ\nClzjNBlBJvlsBdcPLZdLPQjLQZ\nvJMBpBzzzfNCCzCffJlzgMWDWwPDtVtmVHPMwVHD\nbJjWzWFlTMjjSNBrRcBrZR\nmwnwqPwnGQPCqmJmPQJPCVNcRZBRRrrNrmrcVpSrRf\nPGvQQGPqvhWFWlJbDv\nPNPrdmPGRJlZCrCJlGQzjRFLpFRppjgppgcj\nDwfVnssbVnSWShDwsnnhBLFjFgjFBzDBjHDLpHDj\nvSsMgbsTfTwwfMffnTvgNNCmrPJtCNrJrCrrtvGm\ncRnRplCzccVcrwcnppVVzRCNhfhgChNJfPgHJdHDNtNCtP\nWFmbLMZdLBqfJNbPTfttDD\nBdMWdQsGsSsrpzrswr\nllhhZzSLqlzwRrffzwzT\nGvBbNjHbjjTGGHHFcsFvfRrtJQPvtRfwwfrPJD\nHGbcbTTjHFNpppmLnSdplWqZ\nFhwFbPwsvtRgVCgvMT\nHJVHdHBWdBQSSSQnqSQLqZHtcCctppgBtRrgtMCgTprRMM\nQNzZLVSLLLDGPPzPmbFs\nVdTHmWCVZDTPBBWBQBFQQg\nMzjMjzCjJsbJhhPz\ncrfGGLwwLGrtrvCtdTmdDH\nwRLvLmGQLwFPBRmnLCLmGQTzNNqVNZMMVzzQbzVbNZpMVb\njsgJWjdHghsglHtWsjSfHzVNqzfpCCzqDpzDrVVrrD\njJtWWsWhtSHsSSgchthHcjHCvcFCRvwvvTTFBGvBmmGLnL\nLpjWLNqWpwRWMqLRGjwJlStgbtrVgHFrGllDDrVH\nSQmmTcZZvSZBTmTSzhPTddbVDhHllgFCDHtrDHgDVVDr\nPzTTvznBncnfTmTTQcPdmzzMqWNfqwRLpWJsNfwLJjsSwJ\nlsGdGwBsflGrfsHvHwQLdFrmPhDhCFhhjWCVmhDzmbmPhC\nqtMSNNZZMpcnVzmVbCqjWjzB\nZZcgRJpBtTMNnntncwgQQdfGHHHlsQffLH\njBBtjjqfnwStBSrVVFwSVVvvWzHmcWvWbvPmPbWrbMRM\nGTdNDlpJhlCvPbHgcDmgDH\nJZQdQhNldLdTpGdJGdNCpLZdSBnnBFfHHswqqjffZsqsFjns\nphJhDPQLDSJvpHhvDJhfrFQVRrnsslrgwrVrrRjg\nmWNWqZWWZBMdCGMNCdWmWCNCsnVFTRsVnZFlsrlFwFgVsgjr\ndWdjttGmNCBchJfhHvhPtvJt\nCSFSFdfCzJhtSCHQFjQHQWFHRNHG\nwnbrgZnwZgDLsLbwsLrsrNWQNjPZHHvPPQHNqHHvqB\nLbmTLDsgggQmzmCCppdtSJtM\nSzSSchCdZgHbwHSZ\nGsMMmslnsfmNGNNNVVtZWdwbqQbpgWjjgWZjQm\nDvlMtflGGVGthhzdvLvhrTcc\ndvfVNqHlQfGRcjDczlCDnC\nPsPsStLprtTTFSTLmhSVSFSsCzRRjzDnMJDCMWWDjMnMnpjW\nhBFPhSBFttBhStLwmsPTtPsFHZNGfQgdgdZbdqZwdgNVvwvH\nrhjcChdgjdCrjLjLLSLmLFMmFtNnnbQNNNPMbbmtQF\nlwWRZDlsWzrbbQpN\nrTRqsqDRRRsDRVrqDgBCdCVShjCBHchjdh\nPsspltlPsmTsmbmfTPSTTCGjhJJjCnpqJJNhhJwNJh\nBdrLVvgQLQVLHRZGnqRhRNdwNC\nWrFVHDgDQFHVLVVDFQMLltmPsssPztwsPTzsWcmc\nCBvvSzFGSGGWfFZpcHqjvjcvcqccJq\nbRQwgbbhrRhdwmQbWtdjnJHqVJccJqgHVJHJcl\nRRmbPrNRRPLLtmbQmbNwddCTSTzBSDBDSMFTBSSPZFFW\ncppsSgNrSgwrGRdHRrwd\nLzqqmCLCLWQvCzmzZwHnZZHSwvwnlDlS\nhzFqFLLLFtSNVsFF\nzpZcZZZdppzDLWDtJGgfGbTGGJTGcc\nqhvNSClCShRrRBBWTQfgBFbgtfgg\nHlHqvjqmCvCvlSSHvVdsVDzjpVjMWdwLpP\nqLdsfNsTHQwnSNSBNS\ngFhWzrhfbmlpmZhJWrFSvRMnwwvvpBpBSpQBMv\nrgWZrbmlmbzFfglgWzGggFJLccVPqLPqtPLGcPsPHcPLTd\njTTWRCCbwJJNTHrffqNnzh\nDZVmDpgGBVdcMZnqfhlNHQMlNNhl\nsDcpsDZBcmgdssZcnmSWCPWRSRwJWwvFLvRwWj\nhWwhgQlQQgjPhFChZVdbcJ\nzHsrMPNMtDDTmbcJbccmDb\nznzPzrtHtHtMzqHHrsSSLwljqfgwGggjlQjQQgQBGj\nJpnRtqlJsqDJJBBNNmQmgdmRNGGmvv\nhTCbTwMCwVhTWdmDgDvjWD\nMDhhMSwZCbbLVhbLcDSwCwZtZznlzlnqBPBpHPPlBlHJ\nCtvnvqNNDchrhFVpwftmgQgpQfwS\nMbdqPWGjBjMBbwlfVgdmfSfJJS\njWzbzjWWjWMMbRbMsjzBhChrNHcNqHcrNnhssnsc\nLlLJSWgWllSShRmRlBLJSVBzpTHzTTJcpTHzpTTcPpGpTr\nMfMqnvbvDfbFFZDfFNjsGrRppHpZGGcGrcPprz\nwfNFvtwMvbnntftjfNtVmlgmStBmlBWdQQRg\nGpFRRPGWqzHwdqpzqbjjgfZptBBVMSjSfBZc\nTClllrnsJvDMBgcjfmtssB\nNlhNNchrNJlLvClNDrzbGRqwqqqwqPPFLGdd\nqFmVtvmmVvzzFtzzGzzMNNMSSTjNJlStjSfNgf\nsWrPBCnCTMsTJfSM\nQTLbpnRpRppnRQdRzRZqGzFFVVRz\nWGGPjFvMVNjlcQJr\nbslfldbgtpSmwmSNHQhLJhcwLcQrQV\ngTltCsSsssPFnDzWPTMz\nhhRRhQgGrHjhRsrgqznbzncZjVVJVjncjd\nDSFfNTBFSDmMSTDlFbBBdccCdJJZCbZCbW\nDDLmdSmTvQQgsgvGHH\ndNqNgNvFnvdZHFWnZWNBTQlPTppPGlCTpBQppq\nLJrtLrsLjsGvTCTpQP\nmtLhjVjMhhmVMvtJmLfhFWHnngbRRdZHngnZWZ\nNzdVNzqqCtCHMMZBCGBW\npsjllRjFpjpbjspFmWmWnLBmMMQMmHbm\nDhsTPDRTDHpsvRjdNtzJJJdhqwcdqc\nVbhRbZgRHMFhQpHd\nfvlqPzmzJJqJSPsWmPTNddNFHbNFGHNTHSbc\nCqzlfqrCnbrBZjBr\nSNSrDZFHnTqFsFddsCmsMC\nctVthlGjfhGljcCJmcqMCqcqBB\nVtjvtjhhPPtWqVPLjvqjLVNRppRTvNSnbnZRZTHRnpTD\nfzsBSsNBMNMszNGGJvgjjPggzjdFPgpJ\nbmrVVVrmRrrvRmwvqlbHTDgwdLFjQPJPFddwJPFggj\nHHHrZqhqbTMcZBCZfvcN\ntzsJsnsmBzlVqjssZZrg\nMQZHfNCffpMfpGSpPvpfCGCTTVwFTlwrggjSgqFjVjTwwg\nNfMGGGPZpvLDvLCGGfQHMpZRDRWchRRtBBzmJnmzmnBznb\nBSRBjtNjZrsjRjjNsVBjbrMwCgGCCwCdHrlcdccGcH\nDJTTJLpFnFLdJJqPLTWqLTpwHzCGccCzvvcHwMvWzggCMC\nPmpTTdndmmLqfLTTLDqJVBssbbStVmjjSsZNsBZm\nddCnZvCDSgghFhbbmFVQ\nJzlMcJTMMPPfJJfsMsjWlHVhLbQVlFWmHbbb\nBPwwsPfsqszfFqppwTsqzpntDSnCBnDRZrSZdnDdtvZD\nSllzzPplWldwLGlzbtPZZjVScnnNSjnNsqNqsc\nBrCfFDJFDHBhJCChQFhCCBDcTnNVpZZcNcvQTcjvvcTcZV\nRCmFHJDJhCmBmRCgDCFRpmGbWWbLPlbMWzzGttzgLMbt\nvGTfsZnfvfzTjsnfzTJlwqQjwmCqqMFjFFQMlq\nLHtHRVLRLNtWcmVbRrPbRcwgQwgwMwClwClwrgFpwqpw\nVDPtbVLBmLbLbDDNnnnzJJfJfBfvSGBn\nlpPCRVVQppzHlZgzglgF\nrtfttLdLdscmGtzngPHHFHFH\nLPLLhfhbTDLmPdcrcWdTcDSjjRqwwbqpRwNBNpBwjQwR\ndWQfCJrwvQCfFqNwRbbzVbVVLGTR\nZpZshPMzBjGjtVMN\nphpSlSlDlcZpcZPrdHCFzFzFWFDWQH\ntfMMZhjLlChsdsds\nPHQRMHRwpRPBMvWvPRBpPdWDslGrbscTlTGcCsGddG\nFqPSvHPHPBzQRBBwwRJfVtgjzntMntjJLMtJ\nVBwJvwVwNbVRdPwMgWggGMgH\njDhqflDDhrqshNhdgPGHphLg\nFltsrtcFrclrNqDfqmzQJQQRBzBCvCFvBR\nRZsSSJDJZLDWnGDMLD\nClbnlfmpNtmgbtmMqWdjNGjLQjLqLj\ngcblTlVCnVmcPrvRPFRrZs\nmbJcScmbDWLmSBzwjPRTfjmmRhpl\ntFFFtGttdClHVMCHFMMwTpwNjGpzPpNRRzzpPN\ngCCdvZCVHsFvJnnDSglSglDn\ndSndnRRvVSpLSphfqvTgWqrzqvvw\nPBFQbQbDhGfjTTFzqG\ntPmCJMtDDNcMVdhhVc\nQVRVHCQRmdTRqrZFCWrLZNZFbb\nncncsPnhslBRSSSbFhtbZDLMbLbtLb\nlvflPcfPSsPzlJlPlcPBfHJQwRwHmqdVpRGGGdQmww\nGTCGMCcGdgRnnbbbMLwmMz\nDQFZzllWDDLwDJLnJpnp\nqBVrNNlZfFNlWlWqfRzhgvhCqHRdCGGSvc\nZnMnGbLZfJcBcLTgWF\ndHJjdzqssHHNJwCHpHtDccvtBTtvccWWrrTWSg\nCmlqCNzCzHlmdsqzNzRhMhZRbZMPmRfRJQPb\nLsLLrFLcFjrtmZhhmhHGhJGGhH\nffvbsbWpSBSSCCQbsSBSwwJHHvhZHHGdGVGlMlTVdZlT\npSzWNPSfCwWNPBfsFqtFLtsqRzqFgj\nhwwpvjVppGpwWGLrcPjrbrrdbjdL\nFBqFFMFHHsHssNHtslqtFmldnnLrPhMnccrnMzZnbLgPLz\nmJBSstlJQpwGSVhC\ncgJDVWsrWggpcHhMzwwPnQMWMm\nSZGBjdBqBBjGjjqNGfGNNHPnRSQFzhnwmnQzQnPHMR\nbjjCZddjZbZBCtLhCZhftrgJglcTlJgvTllJvDVDLg\nQpRJpCFdpqTQcqSTBBGBZVjZjVjFvwVB\nnnnWfnHhPDlDnlLwGjBBbVVZGbCGbP\nLhhLMLMrMWMrCprTqpJQpz\ndqGGZJdZbTTMFFTGJFFbMdnCHSdWcmNmcCdWSggfSW\nQsjjtrzLrQwDPjrQLrCfSSnmCmHWlCgmzlNl\nPQpQPjQPsBstLBPttDrjBwTZMFMZFvJFJhMhnMJqpTJJ\nJMLrSvHJdJvvJfrHMJRfWzWDFPwCcWqRRRcq\nljZsZTmmtTBlpTlTjQZCtNFPVqDRwWwWWVPcDRVpFRDz\nmBgQgNNTNvrvJSvgCb\nDWbWtzWDfDffbsMbZMffDDLncnnCJmLVsJJJnhgcngLs\nTjgNGSBRTRTQrFRjFGBVLwLnnNncCLLCCcmhPC\nGgGjvgddvvWqqfdZftWH\nzMmsQlMfQQMhjsmjfsmHlhncRRZnRRRJRvZWWnhccdRC\nBptFtDSSrTrpgtgqqgtZtvVVdVvccVnJdVnG\nqpgPqBLDNTgqBrSLpDBMJfjzmbJMHjLMfjslzH\nDPgLgPhfNDRqhDFDsBTtrrrdbbztCbtf\nMjGSScGVGSlJjbbrtTvdzsTq\nJJwJGWMZwMlWnFFgqNQFpF\nWRGDHmGqWHlrmtVVVRVqpNZvZvvvTNPMPjbPdM\nBwhBwsnzwhzSfCfswFvpvTzTdpMpjvPMZNTb\nLFFQgnbfChSFBhFnftRRLrttDmmRJHtlGH\nMhqhRHmDdRlRlGnfZbJVsNNZDnNb\nQwvzgtwvFpmjwzLjFLJZrsZbPfPZbsVpfPsb\ngvjTzBLztLTjwFjtgLTgtzwdWRqdqRTMSWcWTmWlqdhHHm\nZfzzfmhdpNLNBDDsFfQVCDggfV\nHPFjljSnHrqVDgtgQgQMqC\nrGnSJHvjSwGzwFhGZG\nHqmHRDprrNTZTMbh\nCJvzQRQVQCgNzZbzgMNd\nvPCvFPcfQFlSJBcfRcPHmDGqWGDqpGtjjtGGHl\nwcfpJVHfJBffBBGWRprNRWWWNdhv\nDzMzMPqjDnjgCMZPZjzjCjChGdvvbhNdSvrhNWSNqWRRdS\njjCTtnMTDsMBtLRQwwQlFV\nJqGnVqCTpDVCTnNLgmPzdgjcGmRg\nHrSBJSHblsJthsBBSBhMsrzmdNRccjLzgcLmjgPPjlLL\nHSwSttbswWJrbrSWppvVqvvnQVppQQ\nJDCHssRTTwcRJDcnCDzRHsHNPZGBtPzFPSPttZSZGBqPBZ\nvWhLmTlfrhFqGWSNQNqF\nvpMhhpfvmTfhvbLhhgvmgvvlCCJCCMnDnDCnsjRMVDMDswCC\nZgjdlmlmmlJgHJlbZrSDrnrMrmLLDFprmp\nTvqdTtdctvvDrGGSDn\nCWPBhtWqPPwcdVwlNJfVVNNbbb\nvgmrrwlPPrwPBPtmvFcMMrsMSJHscJcMSHDH\nTWdLnZjCLGLMQLHBLS\njqVTTZqjdTVjNFNPqBvgvBNl\njmcgMzsmjmfvJwFpFfRWZRWp\ndrdSldTmCmTDCNCtbRRWqRwtttFZpZWZqw\nNLCVLNLTbbTrQNQDvnzschgghnmnHQcH\nsRVhVQDVDQRRMQhsqtRRNzqzbNzRqNGp\nWdjCLHLjdFnCCnjnFnLHHmPmNJbztJJpprBpbGzbpJbqGWtB\nCCFFCnFjdnjCTHmCLTLLCnFnQVhQQVDMhQQVgZZNVVDDsTVh\ncGLzZgfzcNNzzRZvjvRmVDmmqCCDSdVVChVnDf\nQstsPlWHQlWhMMtpsbtpQtlpDqBVqPSCSVnTTqmVdDVDVdBV\nstptQFJrHptlQsFJMHtHhFbvNwvjLGvvNgzgjcwczzJcNJ\nSQHCrCFPJZcnWrqn\nvfJvJjfGGDggqZGcWD\npjLpRwzhRFtHdMQJ\nHNSHNDvnvdffDNfqdZfdStcFFMGmmrRBcmFcrMrqrWFB\nVblwzwhwPLlCGGzgzhmFjbjFrMFrjFBmbcrM\nhlVPTCCQCCzVlPzhGgPVJCpHtdtSpQSZNNfnZdSSdnSD\ncBVmfwqwmWggTRmQzTQl\nCDnnHjSDPLCSCLHLHCHNCDFgwJljFQRRhlglbzJFQQhl\nGptHLtNGHtCHSnCMtGWdcsqqWwMcqvdsVwfd\nHsMFNRNWnbWfZLzWzQ\nPqrpjqNdjjhPcdbpvmfzfbffbzmv\nGjhhcPjPccVrqcPCldCjssHNnTnNttRwwVMTHMnV\njjCcBswcfnwgpPFPwFFGSFSwFb\nVvmVhVvRRQqttRtQDLzLhqRlrBFMWrGPBSMSZSMFqBWZZP\nmvQmLRvJtBJVnTcJCjsjsdgp\nqgqvPbdMDMMPwpbLFGwtNlNF\nTTQmdJTnSllFGtJNtw\nCSSHmQHfmVcHjQmSvPBdBDDWMVhMhRMB\nWCvQNZdhCDnnPfQPfTzjHcppsHjpsSjHNS\nmFMgMBlMmBqHjjBfTjHzBc\ngrJbrqfqMVFJrlJrtCtvhPPQdnvnnvnwdW\nFdQQJRdfSSfrJsRZfFsRSvtDBmDHGtGqbgvnmbDnvDGq\nlcMzjCPTVtMqgWWGqn\nVpLjcVPczhzznPLcPhTwFQFRZNfFNrNZFpZNsZJR\nVWgJhmdDdJDdVPggPSTSTWvvfRzfFfFbNb\njCQtnpGQrHMctnpzRbFfgSwHvgwfwv\nntcMcqLMcQccQLgjBPLdhZDVlJPVdDLJ\nRnPnwtqHnJthjLMcWWncMn\nmsdCrCdNpBBsCrlNTpNBDNGzcLchQjFQzccQLQpzLzWtFS\nsTbdTBNrTCTTBCNBlVbwgVPJHtPgPvqgff\nQmBsmpmcZQNqPqVnPFVpGh\ngDDMDLMJgHfJwJMzfTfdGLhChPtvnGRPRRLFGPGv\nDTlzgwfDrrrMWlncbscNnlSW\ntBwvGHFttrFrvRgRhCmCmwQmMg\nJWbNJZjzfbVjWjBhqfmSnhqCqgnQ\nZZJJJbclzJcsTPdvTTPTBFtHDF\nLszmFTFpTmszLrpqSmFpzcvQjtQjvLJgJtcBjgtJjj\nVHNwwNCVCChddfwHlWdnlnGRQPcQjRvMWBJJtMMWcvPJMM\nnGHNVHhnfnHDNhCfdhNNlwHvmpDrZDmpzmbZSZFsmmbqrrsz", Scope = Private
 	#tag EndConstant
 
@@ -204,6 +242,7 @@ End
 		  ExpeditionListBox.RemoveAllRows
 		  Var groups() As ExpeditionGroup
 		  Var lines() As String = input.Split(EndOfLine)
+		  Var itemList As New Dictionary
 		  Var i As Integer
 		  While i < lines.LastIndex
 		    groups.Add(New ExpeditionGroup(New Rucksack(lines(i)), New Rucksack(lines(i + 1)), New Rucksack(lines(i + 2))))
@@ -220,7 +259,11 @@ End
 		      duplicatedItem = member.GetDuplicatedItem
 		      Var chars() As String = member.RawData.Split("")
 		      For Each char As String In chars
-		        contents = contents + Rucksack.GetFoodEmoji(char)
+		        Var emoji As String = Rucksack.GetFoodEmoji(char)
+		        contents = contents + emoji
+		        Var item As Integer = itemList.Lookup(emoji, 0)
+		        item = item + 1
+		        itemList.Value(emoji) = item
 		      Next
 		      Var leftCompartment, rightCompartment As String
 		      leftCompartment = contents.Left(contents.Length / 2)
@@ -231,6 +274,25 @@ End
 		    groupNumber = groupNumber + 1
 		  Next
 		  
+		  // Prepare the graph
+		  Var items() As Pair
+		  For Each item As DictionaryEntry In itemList
+		    items.Add(item.Key : item.Value)
+		  Next
+		  
+		  items.Sort(WeakAddressOf PairCompare)
+		  
+		  Var labels() As String
+		  Var data() As Double
+		  For Each item As Pair In items
+		    labels.Add(item.Left)
+		    data.Add(item.Right)
+		  Next
+		  
+		  ItemsChart.RemoveAllDatasets
+		  ItemsChart.RemoveAllLabels
+		  ItemsChart.AddLabels(labels)
+		  ItemsChart.AddDataset(New WebChartLinearDataset("Items", Color.Teal, True, data))
 		End Sub
 	#tag EndEvent
 	#tag Event
