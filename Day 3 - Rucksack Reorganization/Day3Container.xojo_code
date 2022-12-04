@@ -207,9 +207,7 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h21
 		Private Function PairCompare(value1 As Pair, value2 As Pair) As Integer
-		  If value1.Right > value2.Right Then Return -1
-		  If value1.Right < value2.Right Then Return 1
-		  Return 0
+		  Return Sign(value2.Right - value1.Right)
 		End Function
 	#tag EndMethod
 
