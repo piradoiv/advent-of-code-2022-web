@@ -44,7 +44,6 @@ Begin WebDialog PuzzleInputWebDialog
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   0
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -73,7 +72,6 @@ Begin WebDialog PuzzleInputWebDialog
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   1
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   422
       Visible         =   True
@@ -100,7 +98,6 @@ Begin WebDialog PuzzleInputWebDialog
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   2
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   422
       Visible         =   True
@@ -128,7 +125,6 @@ Begin WebDialog PuzzleInputWebDialog
       Multiline       =   False
       Scope           =   2
       TabIndex        =   3
-      TabStop         =   True
       Text            =   "Raw input:"
       TextAlignment   =   0
       TextColor       =   &c00000000
@@ -159,7 +155,6 @@ Begin WebDialog PuzzleInputWebDialog
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   4
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   422
       Visible         =   True
@@ -184,10 +179,8 @@ Begin WebDialog PuzzleInputWebDialog
       LockRight       =   False
       LockTop         =   False
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   5
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   422
       Visible         =   True
@@ -233,6 +226,13 @@ End
 
 #tag EndWindowCode
 
+#tag Events InputTextArea
+	#tag Event
+		Sub Opening()
+		  Me.Style.FontName = "Courier New"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events OkButton
 	#tag Event
 		Sub Pressed()

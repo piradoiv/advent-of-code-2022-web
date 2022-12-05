@@ -47,7 +47,7 @@ Begin WebPage MainWebPage
       Position        =   0
       Scope           =   2
       TabIndex        =   0
-      Title           =   "Advent of Code 2022"
+      Title           =   "🎅 Advent of Code 2022"
       Tooltip         =   ""
       Top             =   0
       Visible         =   True
@@ -70,9 +70,9 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelCount      =   4
+      PanelCount      =   5
       Scope           =   2
-      SelectedPanelIndex=   3
+      SelectedPanelIndex=   4
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -171,7 +171,7 @@ Begin WebPage MainWebPage
          _mDesignWidth   =   0
          _mPanelIndex    =   -1
       End
-      Begin Day4Container Day4Container1
+      Begin Day4Container Day4
          ControlID       =   ""
          Enabled         =   True
          Height          =   630
@@ -187,11 +187,41 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   3
+         PanelIndex      =   "3"
          Parent          =   "Pages"
-         Scope           =   0
+         Scope           =   2
          ScrollDirection =   0
          TabIndex        =   5
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day5Container Day5
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   4
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   6
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -212,7 +242,7 @@ End
 	#tag Event
 		Sub Opening()
 		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer", _
-		  "Camp Cleanup")
+		  "Camp Cleanup", "Supply Stacks")
 		  
 		  For i As Integer = 0 To sections.LastIndex
 		    Var button As New WebToolbarButton(sections(i))
@@ -230,7 +260,7 @@ End
 #tag Events Pages
 	#tag Event
 		Sub Opening()
-		  Me.SelectedPanelIndex = 3
+		  Me.SelectedPanelIndex = 4
 		End Sub
 	#tag EndEvent
 #tag EndEvents

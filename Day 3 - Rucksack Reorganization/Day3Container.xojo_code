@@ -192,7 +192,6 @@ Begin WebContainer Day3Container
       Mode            =   0
       Scope           =   2
       TabIndex        =   5
-      TabStop         =   True
       Title           =   ""
       Tooltip         =   ""
       Top             =   20
@@ -266,6 +265,14 @@ End
 		      Var leftCompartment, rightCompartment As String
 		      leftCompartment = contents.Left(contents.Length / 2)
 		      rightCompartment = contents.Right(contents.Length / 2)
+		      
+		      chars = leftCompartment.Split("")
+		      chars.Sort
+		      leftCompartment = String.FromArray(chars, "")
+		      chars = rightCompartment.Split("")
+		      chars.Sort
+		      rightCompartment = String.FromArray(chars, "")
+		      
 		      ExpeditionListBox.AddRow(i.ToString, groupNumber.ToString, Rucksack.GetFoodEmoji(badge), leftCompartment, rightCompartment)
 		      i = i + 1
 		    Next

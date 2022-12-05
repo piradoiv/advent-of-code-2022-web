@@ -72,6 +72,7 @@ Implements WebDataSource
 		      style.BackgroundColor = &ca8ff92
 		    End Select
 		    
+		    row.PrimaryKey = id
 		    row.Value("id") = id.ToString
 		    row.Value("opponent") = FigureToString(Matches(i).Opponent)
 		    row.Value("you") = FigureToString(Matches(i).Player)

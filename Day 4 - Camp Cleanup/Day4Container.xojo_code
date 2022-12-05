@@ -40,7 +40,6 @@ Begin WebContainer Day4Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   82
       Visible         =   True
@@ -69,7 +68,6 @@ Begin WebContainer Day4Container
       LockVertical    =   False
       Scope           =   2
       TabIndex        =   1
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -106,7 +104,6 @@ Begin WebContainer Day4Container
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   0
       TabIndex        =   2
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   234
       Visible         =   True
@@ -133,7 +130,6 @@ Begin WebContainer Day4Container
       Mode            =   0
       Scope           =   2
       TabIndex        =   3
-      TabStop         =   True
       Title           =   ""
       Tooltip         =   ""
       Top             =   20
@@ -165,7 +161,6 @@ Begin WebContainer Day4Container
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   4
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -184,7 +179,7 @@ Begin WebContainer Day4Container
       Height          =   70
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Left            =   386
       LockBottom      =   False
       LockedInPosition=   False
@@ -194,11 +189,9 @@ Begin WebContainer Day4Container
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   5
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""

@@ -115,11 +115,11 @@ Protected Class Rucksack
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mRawData"
+			Name="RawData"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
