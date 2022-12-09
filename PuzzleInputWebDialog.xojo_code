@@ -201,14 +201,14 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub SetInput(input As String)
-		  InputTextArea.Text = input
+		Sub SetInput(value As String)
+		  InputTextArea.Text = value
 		End Sub
 	#tag EndMethod
 
 
 	#tag Hook, Flags = &h0
-		Event InputReady(input As String)
+		Event InputReady(inputValue As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -236,10 +236,10 @@ End
 #tag Events OkButton
 	#tag Event
 		Sub Pressed()
-		  Var input As String = InputTextArea.Text
+		  Var value As String = InputTextArea.Text
 		  Self.Close
 		  
-		  RaiseEvent InputReady(input)
+		  RaiseEvent InputReady(value)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

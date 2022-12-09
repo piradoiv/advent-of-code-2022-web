@@ -268,9 +268,9 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub InputReady(input As String)
+		Sub InputReady(inputValue As String)
 		  TournamentThread.Stop
-		  TournamentThread.Input = input
+		  TournamentThread.InputValue = inputValue
 		  TournamentThread.Start
 		  
 		  TournamentData.Matches.RemoveAll

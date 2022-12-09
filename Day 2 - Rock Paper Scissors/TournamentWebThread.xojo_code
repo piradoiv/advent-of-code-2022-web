@@ -3,7 +3,7 @@ Protected Class TournamentWebThread
 Inherits WebThread
 	#tag Event
 		Sub Run()
-		  Var lines() As String = input.Split(EndOfLine)
+		  Var lines() As String = InputValue.Split(EndOfLine)
 		  Var matches() As TournamentMatch
 		  
 		  For i As Integer = 0 To lines.LastIndex
@@ -25,7 +25,7 @@ Inherits WebThread
 
 
 	#tag Property, Flags = &h0
-		Input As String
+		InputValue As String
 	#tag EndProperty
 
 
@@ -118,7 +118,7 @@ Inherits WebThread
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Input"
+			Name="InputValue"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

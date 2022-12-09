@@ -229,8 +229,8 @@ End
 #tag EndEvents
 #tag Events PuzzleInputDialog
 	#tag Event
-		Sub InputReady(input As String)
-		  Var organizer As New RucksackReorganizer(input)
+		Sub InputReady(inputValue As String)
+		  Var organizer As New RucksackReorganizer(inputValue)
 		  
 		  SumOfPrioritiesTextField.Text = organizer.CalculatePriorities.ToString
 		  SumOfBadgesTextField.Text = organizer.CalculateGroupPriorities.ToString
@@ -238,7 +238,7 @@ End
 		  // The rest is just for displaying the data
 		  ExpeditionListBox.RemoveAllRows
 		  Var groups() As ExpeditionGroup
-		  Var lines() As String = input.Split(EndOfLine)
+		  Var lines() As String = inputValue.Split(EndOfLine)
 		  Var itemList As New Dictionary
 		  Var i As Integer
 		  While i < lines.LastIndex

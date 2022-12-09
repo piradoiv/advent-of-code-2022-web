@@ -345,9 +345,9 @@ End
 #tag EndEvents
 #tag Events PuzzleInputDialog
 	#tag Event
-		Sub InputReady(input As String)
-		  mInput = input
-		  CrateMoverRadioGroup.Enabled = input.Trim <> ""
+		Sub InputReady(inputValue As String)
+		  mInput = inputValue
+		  CrateMoverRadioGroup.Enabled = inputValue.Trim <> ""
 		  
 		  // Cargo Crane Initial Stack
 		  Var parts() As String = mInput.Split(EndOfLine + EndOfLine)

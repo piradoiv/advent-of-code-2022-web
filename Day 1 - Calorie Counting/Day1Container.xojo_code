@@ -21,7 +21,6 @@ Begin WebContainer Day1Container
    Width           =   568
    _mDesignHeight  =   0
    _mDesignWidth   =   0
-   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebTextField MaxCaloriesTextField
       AllowAutoComplete=   False
@@ -290,9 +289,9 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function GetCaloriesByElf(input As String) As Double()
-		  Var lines() As String = input.Split(EndOfLine)
-		  Var elves As Integer = input.CountFields(EndOfLine + EndOfLine) - 1
+		Private Function GetCaloriesByElf(value As String) As Double()
+		  Var lines() As String = value.Split(EndOfLine)
+		  Var elves As Integer = value.CountFields(EndOfLine + EndOfLine) - 1
 		  Var elvesCalories() As Double
 		  elvesCalories.ResizeTo(elves)
 		  
@@ -358,8 +357,8 @@ End
 #tag EndEvents
 #tag Events InputDialog
 	#tag Event
-		Sub InputReady(input As String)
-		  mCalories = GetCaloriesByElf(input)
+		Sub InputReady(inputValue As String)
+		  mCalories = GetCaloriesByElf(inputValue)
 		  If mCalories.Count < 3 Then
 		    MessageBox("Invalid input data")
 		    Return

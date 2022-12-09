@@ -239,8 +239,8 @@ End
 
 #tag Events PuzzleInputDialog
 	#tag Event
-		Sub InputReady(input As String)
-		  Var lines() As String = input.Split(EndOfLine)
+		Sub InputReady(inputValue As String)
+		  Var lines() As String = inputValue.Split(EndOfLine)
 		  Var counterContains As Integer
 		  Var counterPart As Integer
 		  Var assignments() As Pair

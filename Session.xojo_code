@@ -5,7 +5,7 @@ Inherits WebSession
   interruptmessage=
   disconnectmessage=
   confirmmessage=
-  AllowTabOrderWrap=
+  AllowTabOrderWrap=False
 #tag EndSession
 End Class
 #tag EndClass

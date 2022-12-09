@@ -70,9 +70,9 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelCount      =   5
+      PanelCount      =   8
       Scope           =   2
-      SelectedPanelIndex=   4
+      SelectedPanelIndex=   7
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -217,11 +217,101 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   4
+         PanelIndex      =   "4"
          Parent          =   "Pages"
          Scope           =   2
          ScrollDirection =   0
          TabIndex        =   6
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day6Container Day6
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   "5"
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   7
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day7Container Day7
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   "6"
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   8
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day8Container Day8
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   7
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   9
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -242,7 +332,7 @@ End
 	#tag Event
 		Sub Opening()
 		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer", _
-		  "Camp Cleanup", "Supply Stacks")
+		  "Camp Cleanup", "Supply Stacks", "Tuning Trouble", "Space Left", "Treetop Tree House")
 		  
 		  For i As Integer = 0 To sections.LastIndex
 		    Var button As New WebToolbarButton(sections(i))
@@ -260,7 +350,7 @@ End
 #tag Events Pages
 	#tag Event
 		Sub Opening()
-		  Me.SelectedPanelIndex = 4
+		  Me.SelectedPanelIndex = 7
 		End Sub
 	#tag EndEvent
 #tag EndEvents
