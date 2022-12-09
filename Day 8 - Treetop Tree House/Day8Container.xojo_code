@@ -136,17 +136,18 @@ Begin WebContainer Day8Container
       _mDesignWidth   =   0
       _mPanelIndex    =   -1
    End
-   Begin Day8WebThread Day8Thread
+   Begin Day8WebThread PuzzleThread
       DebugIdentifier =   ""
       Index           =   -2147483648
+      InputValue      =   ""
+      Left            =   0.0
       LockedInPosition=   False
       Priority        =   5
       Scope           =   2
       StackSize       =   0
-      TabIndex        =   4
-      TabStop         =   True
       ThreadID        =   0
       ThreadState     =   ""
+      Top             =   0.0
    End
    Begin WebProgressWheel Spinner
       Colorize        =   False
@@ -167,7 +168,6 @@ Begin WebContainer Day8Container
       SVGColor        =   &c00000000
       SVGData         =   ""
       TabIndex        =   4
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   244
       Visible         =   False
@@ -197,9 +197,9 @@ End
 #tag Events PuzzleInputDialog
 	#tag Event
 		Sub InputReady(inputValue As String)
-		  Day8Thread.Stop
-		  Day8Thread.InputValue = inputValue
-		  Day8Thread.Start
+		  PuzzleThread.Stop
+		  PuzzleThread.InputValue = inputValue
+		  PuzzleThread.Start
 		  
 		  Spinner.Visible = True
 		End Sub
@@ -215,7 +215,7 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events Day8Thread
+#tag Events PuzzleThread
 	#tag Event
 		Sub UserInterfaceUpdate(data() as Dictionary)
 		  For Each current As Dictionary In data
