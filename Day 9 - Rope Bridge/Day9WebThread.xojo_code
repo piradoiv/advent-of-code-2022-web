@@ -28,7 +28,7 @@ Inherits WebThread
 
 	#tag Method, Flags = &h21
 		Private Function CalculatePart2(puzzleInput As String) As Integer
-		  Return SimulateRopeMovement(14, puzzleInput)
+		  Return SimulateRopeMovement(10, puzzleInput)
 		End Function
 	#tag EndMethod
 

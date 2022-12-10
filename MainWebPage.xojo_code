@@ -70,9 +70,9 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
-      PanelCount      =   9
+      PanelCount      =   10
       Scope           =   2
-      SelectedPanelIndex=   8
+      SelectedPanelIndex=   9
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -337,11 +337,41 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   8
+         PanelIndex      =   "8"
          Parent          =   "Pages"
          Scope           =   2
          ScrollDirection =   0
          TabIndex        =   10
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day10Container Day10
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   9
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   11
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -363,18 +393,23 @@ End
 		Sub Opening()
 		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer", _
 		  "Camp Cleanup", "Supply Stacks", "Tuning Trouble", "Space Left", "Treetop Tree House", _
-		  "Rope Bridge")
+		  "Rope Bridge", "Cathode-Ray Tube")
 		  
+		  Var puzzlesMenu As New WebMenuItem
 		  For i As Integer = 0 To sections.LastIndex
-		    Var button As New WebToolbarButton(sections(i))
-		    button.Tag = i
-		    Me.AddItem(button)
+		    Var day As Integer = i + 1
+		    puzzlesMenu.AddMenuItem(New WebMenuItem("Day " + day.ToString + " - " + sections(i), i))
 		  Next
+		  
+		  Var puzzlesItem As New WebToolbarButton("Puzzles")
+		  puzzlesItem.Style = WebToolbarButton.ButtonStyles.Menu
+		  puzzlesItem.Menu = puzzlesMenu
+		  Me.AddItem(puzzlesItem)
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Pressed(Item as WebToolbarButton)
-		  Pages.SelectedPanelIndex = Item.Tag.IntegerValue
+		Sub MenuSelected(Item as WebToolbarButton, hitItem as WebMenuItem)
+		  Pages.SelectedPanelIndex = hitItem.Tag.IntegerValue
 		End Sub
 	#tag EndEvent
 #tag EndEvents
