@@ -223,8 +223,8 @@ End
 		    Select Case current.Lookup("type", "")
 		    Case "part1"
 		      Part1TextField.Text = current.Value("result").StringValue
-		    Case "result_string"
-		      ResultLabel.Text = Current.Value("value").StringValue
+		    Case "part2"
+		      ResultLabel.Text = Current.Value("result").StringValue
 		    Case "finish"
 		      Spinner.Visible = False
 		    End Select
@@ -238,7 +238,7 @@ End
 		  Var label As String
 		  For y As Integer = 1 To 6
 		    For x As Integer = 1 To 40
-		      label = label + "⬛️"
+		      label = label + PuzzleThread.CharacterOff
 		    Next
 		    label = label + EndOfLine
 		  Next
