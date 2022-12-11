@@ -38,6 +38,7 @@ Inherits WebThread
 		Private Function CalculateRounds(monkeys() As AngryMonkey, rounds As Integer, divideWorryLevel As Boolean = True) As Integer
 		  Var result As Integer = 0
 		  
+		  // Prepare modulo
 		  Var values() As Integer
 		  Var modulo As Integer = 1
 		  For Each monkey As AngryMonkey In monkeys
@@ -48,64 +49,37 @@ Inherits WebThread
 		    modulo = modulo * value
 		  Next
 		  
-		  For i As Integer = 1 To rounds
+		  // Play the rounds
+		  Var a, b, worryLevel, toMonkey As Integer
+		  Var isDivisible As Boolean
+		  For round As Integer = 1 To rounds
 		    For Each monkey As AngryMonkey In monkeys
 		      Var operands() As String = monkey.Operation.LastField("=").Trim.Split(" ")
 		      
 		      For Each item As Integer In monkey.Items
-		        If Not divideWorryLevel Then
-		          item = item Mod modulo
-		        End If
 		        monkey.ItemsInspected = monkey.ItemsInspected + 1
-		        Var a, b As Integer
-		        Var worryLevel As Integer = item
+		        worryLevel = item
 		        
-		        If operands(0).Trim = "old" Then
-		          a = worryLevel
-		        Else
-		          a = operands(0).Trim.Val
-		        End If
-		        
-		        If operands(2).Trim = "old" Then
-		          b = worryLevel
-		        Else
-		          b = operands(2).Trim.Val
-		        End If
+		        a = If(operands(0).Trim = "old", worryLevel, operands(0).Trim.Val)
+		        b = If(operands(2).Trim = "old", worryLevel, operands(2).Trim.Val)
 		        
 		        Select Case operands(1).Trim
 		        Case "+"
 		          worryLevel = a + b
 		        Case "*"
-		          If a * b < 0 Then
-		            Break
-		          End If
 		          worryLevel = a * b
-		        Else
-		          Break
 		        End Select
 		        
-		        If divideWorryLevel Then
-		          worryLevel = Floor(worryLevel / 3)
-		        Else
-		          worryLevel = worryLevel Mod modulo
-		        End If
+		        // "[...] find another way to keep your worry levels manageable."
+		        worryLevel = If(divideWorryLevel, Floor(worryLevel / 3), worryLevel Mod modulo)
 		        
-		        If worryLevel Mod monkey.TestDibisibleBy = 0 Then
-		          monkeys(monkey.ThrowToMonkeyWhenTrue).Items.Add(worryLevel)
-		        Else
-		          monkeys(monkey.ThrowToMonkeyWhenFalse).Items.Add(worryLevel)
-		        End If
+		        isDivisible = worryLevel Mod monkey.TestDibisibleBy = 0
+		        toMonkey = If(isDivisible, monkey.DestinationWhenTrue, monkey.DestinationWhenFalse)
+		        monkeys(toMonkey).Items.Add(worryLevel)
 		      Next
 		      
 		      monkey.Items.RemoveAll
 		    Next
-		    
-		    If i = 1 Or i = 20 Or i Mod 1000 = 0 Then
-		      System.DebugLog("== After round " + i.ToString + " ==")
-		      For j As Integer = 0 To monkeys.LastIndex
-		        System.DebugLog("Monkey " + j.ToString + " inspected items " + monkeys(j).ItemsInspected.ToString + " times.")
-		      Next
-		    End If
 		  Next
 		  
 		  monkeys.Sort(WeakAddressOf SortByItemsInspected)
@@ -136,15 +110,15 @@ Inherits WebThread
 		    Var divisibleBy As Integer = lines(3).LastField(" ").Trim.Val
 		    
 		    // Throw to monkey
-		    Var moneky1 As Integer = lines(4).LastField(" ").Trim.Val
+		    Var monkey1 As Integer = lines(4).LastField(" ").Trim.Val
 		    Var monkey2 As Integer = lines(5).LastField(" ").Trim.Val
 		    
 		    Var monkey As New AngryMonkey
 		    monkey.Items = items
 		    monkey.Operation = operation
 		    monkey.TestDibisibleBy = divisibleBy
-		    monkey.ThrowToMonkeyWhenTrue = moneky1
-		    monkey.ThrowToMonkeyWhenFalse = monkey2
+		    monkey.DestinationWhenTrue = monkey1
+		    monkey.DestinationWhenFalse = monkey2
 		    
 		    monkeys.Add(monkey)
 		  Next

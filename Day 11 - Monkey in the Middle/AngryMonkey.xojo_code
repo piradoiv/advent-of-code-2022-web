@@ -1,6 +1,14 @@
 #tag Class
 Protected Class AngryMonkey
 	#tag Property, Flags = &h0
+		DestinationWhenFalse As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DestinationWhenTrue As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Items() As Integer
 	#tag EndProperty
 
@@ -14,14 +22,6 @@ Protected Class AngryMonkey
 
 	#tag Property, Flags = &h0
 		TestDibisibleBy As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		ThrowToMonkeyWhenFalse As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		ThrowToMonkeyWhenTrue As Integer
 	#tag EndProperty
 
 
@@ -91,7 +91,7 @@ Protected Class AngryMonkey
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ThrowToMonkeyWhenFalse"
+			Name="DestinationWhenFalse"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -99,7 +99,7 @@ Protected Class AngryMonkey
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ThrowToMonkeyWhenTrue"
+			Name="DestinationWhenTrue"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
