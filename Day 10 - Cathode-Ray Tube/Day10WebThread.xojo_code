@@ -223,6 +223,22 @@ Inherits WebThread
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CharacterOff"
+			Visible=false
+			Group="Behavior"
+			InitialValue="⬜️"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CharacterOn"
+			Visible=false
+			Group="Behavior"
+			InitialValue="⬛️"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass
