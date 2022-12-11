@@ -35,8 +35,8 @@ Inherits WebThread
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function CalculateRounds(monkeys() As AngryMonkey, rounds As Integer, divideWorryLevel As Boolean = True) As Int64
-		  Var result As Int64 = 0
+		Private Function CalculateRounds(monkeys() As AngryMonkey, rounds As Integer, divideWorryLevel As Boolean = True) As Integer
+		  Var result As Integer = 0
 		  
 		  Var values() As Integer
 		  Var modulo As Integer = 1
@@ -48,17 +48,17 @@ Inherits WebThread
 		    modulo = modulo * value
 		  Next
 		  
-		  For i As Int64 = 1 To rounds
+		  For i As Integer = 1 To rounds
 		    For Each monkey As AngryMonkey In monkeys
 		      Var operands() As String = monkey.Operation.LastField("=").Trim.Split(" ")
 		      
-		      For Each item As Int64 In monkey.Items
+		      For Each item As Integer In monkey.Items
 		        If Not divideWorryLevel Then
 		          item = item Mod modulo
 		        End If
 		        monkey.ItemsInspected = monkey.ItemsInspected + 1
-		        Var a, b As Int64
-		        Var worryLevel As Int64 = item
+		        Var a, b As Integer
+		        Var worryLevel As Integer = item
 		        
 		        If operands(0).Trim = "old" Then
 		          a = worryLevel
