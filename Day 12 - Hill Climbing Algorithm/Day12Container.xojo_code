@@ -195,8 +195,7 @@ Begin WebContainer Day12Container
       Multiline       =   True
       Scope           =   2
       TabIndex        =   5
-      TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""

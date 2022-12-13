@@ -95,34 +95,67 @@ Inherits WebThread
 		  Var height As Integer = lines.Count
 		  Var graph As Dictionary = Build2DGraph(width, height)
 		  
+		  Var startPoint, endPoint As Point
+		  
 		  For y As Integer = 0 To lines.LastIndex
 		    Var chars() As String = lines(y).Split("")
 		    For x As Integer = 0 To width - 1
-		      If Asc(chars(x)) = Asc("S") Then
-		        mStartPoint = New Point(x, y)
-		        chars(x) = "a"
-		      ElseIf Asc(chars(x)) = Asc("E") Then
-		        mDestination = New Point(x, y)
-		        chars(x) = "z"
-		      End If
 		      Var node As GraphNode = graph.Value(GraphNode.KeyFromPosition(New Point(x, y)))
-		      node.Height = Asc(chars(x))
+		      node.Char = chars(x)
+		      
+		      Select Case Asc(chars(x))
+		      Case Asc("S")
+		        startPoint = New Point(x, y)
+		        node.Height = Asc("a")
+		      Case Asc("E")
+		        endPoint = New Point(x, y)
+		        node.Height = Asc("z")
+		      Else
+		        node.Height = Asc(chars(x))
+		      End Select
 		    Next
 		  Next
 		  
-		  Return SolveBFS(graph, mStartPoint, mDestination)
+		  Return SolveBFS(graph, startPoint, endPoint)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DrawPath(puzzleInput As String, grid(, ) As String, possiblePaths As Dictionary, width As Integer, height As Integer)
+		Private Sub DrawPath(graph As Dictionary, path() As GraphNode, visitedNodes() As GraphNode, forceDraw As Boolean = False)
+		  If mLastDrawTimestamp = Nil Then mLastDrawTimestamp = New DateTime(0)
+		  Var diff As DateInterval = DateTime.Now - mLastDrawTimestamp
+		  If Not forceDraw And diff.Nanoseconds < 1000000 Then
+		    Return
+		  End If
+		  
+		  Var lines() As String = InputValue.Split(EndOfLine)
+		  Var width As Integer = lines(0).Length - 1
+		  Var height As Integer = lines.Count - 1
+		  
 		  Var pathGrid(-1, -1) As String
 		  pathGrid.ResizeTo(width, height)
+		  For Each entry As DictionaryEntry In graph
+		    Var node As GraphNode = entry.Value
+		    pathGrid(node.Position.X, node.Position.Y) = node.Char
+		  Next
+		  
 		  Var currentPos As New Point
+		  
+		  Var closestLowerPoint As Point
+		  For i As Integer = path.LastIndex DownTo 0
+		    If path(i).Char = "a" Or Asc(path(i).Char) = Asc("S") Then
+		      closestLowerPoint = path(i).Position
+		      Exit For
+		    End If
+		  Next
 		  
 		  For y As Integer = 0 To height
 		    For x As Integer = 0 To width
-		      Select Case Asc(grid(x, y))
+		      Select Case Asc(pathGrid(x, y))
+		      Case Asc("S")
+		        pathGrid(x, y) = "🟥"
+		      Case Asc("E")
+		        pathGrid(x, y) = "🟩"
 		      Case Is < Asc("b")
 		        pathGrid(x, y) = "⬜️"
 		      Case Is < Asc("d")
@@ -139,34 +172,20 @@ Inherits WebThread
 		    Next
 		  Next
 		  
-		  Var possiblePathChars() As String = Array("🟦", "🅰️", "⏺", "⚛️", "❇️")
-		  Var pathIndex As Integer
-		  For Each entry As DictionaryEntry In possiblePaths
-		    Var path() As Point = entry.Value
-		    Var begin As Point = path(0)
-		    Var finish As Point = path(path.LastIndex)
-		    currentPos.X = path(0).X
-		    currentPos.Y = path(0).Y
+		  For Each node As GraphNode In visitedNodes
+		    If node.Char <> "S" And node.Char <> "E" Then
+		      pathGrid(node.Position.X, node.Position.Y) = "🔲"
+		    End If
+		  Next
+		  
+		  For Each node As GraphNode In path
+		    If node.Char <> "S" And node.Char <> "E" Then
+		      pathGrid(node.Position.X, node.Position.Y) = "⏺"
+		    End If
 		    
-		    For Each winner As Point In path
-		      Var pathChar As String
-		      If winner.X > currentPos.X Then
-		        pathChar = "▶️"
-		      ElseIf winner.X < currentPos.X Then
-		        pathChar = "◀️"
-		      ElseIf winner.Y > currentPos.Y Then
-		        pathChar = "🔽"
-		      Else
-		        pathChar = "🔼"
-		      End If
-		      pathChar = possiblePathChars(pathIndex)
-		      pathGrid(currentPos.X, currentPos.Y) = pathChar
-		      currentPos = winner
-		    Next
-		    
-		    pathGrid(begin.X, begin.Y) = "🟥"
-		    pathGrid(finish.X, finish.Y) = "🟩"
-		    pathIndex = pathIndex + 1
+		    If closestLowerPoint <> Nil And closestLowerPoint = node.Position Then
+		      pathGrid(node.Position.X, node.Position.Y) = "🟥"
+		    End If
 		  Next
 		  
 		  Var output As String
@@ -176,10 +195,9 @@ Inherits WebThread
 		    Next
 		    output = output + EndOfLine
 		  Next
-		  // output = output + EndOfLine + EndOfLine + puzzleInput
 		  
 		  AddUserInterfaceUpdate("type" : "path", "path" : output)
-		  // Self.Sleep(5)
+		  mLastDrawTimestamp = DateTime.Now
 		End Sub
 	#tag EndMethod
 
@@ -212,15 +230,21 @@ Inherits WebThread
 		        End If
 		      End If
 		    Next
+		    DrawPath(graph, result, visitedNodes)
 		  Wend
 		  
 		  If lastNode = Nil Then Return result
+		  
+		  Var empty() As GraphNode
 		  
 		  result.Add(lastNode)
 		  While lastNode.FoundBy <> Nil
 		    result.AddAt(0, lastNode.FoundBy)
 		    lastNode = lastNode.FoundBy
+		    DrawPath(graph, result, empty, True)
 		  Wend
+		  
+		  DrawPath(graph, result, empty, True)
 		  
 		  Return result
 		End Function
@@ -232,11 +256,7 @@ Inherits WebThread
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mDestination As Point
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mStartPoint As Point
+		Private mLastDrawTimestamp As DateTime
 	#tag EndProperty
 
 

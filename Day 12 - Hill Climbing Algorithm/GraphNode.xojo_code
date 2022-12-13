@@ -14,6 +14,10 @@ Protected Class GraphNode
 
 
 	#tag Property, Flags = &h0
+		Char As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		FoundBy As GraphNode
 	#tag EndProperty
 
