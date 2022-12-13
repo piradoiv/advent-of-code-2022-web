@@ -64,6 +64,30 @@ Inherits WebThread
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function BuildGraphForPuzzle(width As Integer, height As Integer, lines() As String) As Dictionary
+		  Var graph As Dictionary = Build2DGraph(width, height)
+		  
+		  For y As Integer = 0 To lines.LastIndex
+		    Var chars() As String = lines(y).Split("")
+		    For x As Integer = 0 To width - 1
+		      If Asc(chars(x)) = Asc("S") Then
+		        mStartPoint = New Point(x, y)
+		        chars(x) = "a"
+		      ElseIf Asc(chars(x)) = Asc("E") Then
+		        mDestination = New Point(x, y)
+		        chars(x) = "z"
+		      End If
+		      
+		      Var node As GraphNode = graph.Value(GraphNode.KeyFromPosition(New Point(x, y)))
+		      node.Height = Asc(chars(x))
+		    Next
+		  Next
+		  
+		  Return graph
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Function CalculatePart1(puzzleInput As String) As Integer
 		  Var lines() As String = puzzleInput.Split(EndOfLine)
@@ -88,7 +112,7 @@ Inherits WebThread
 		    Next
 		  Next
 		  
-		  Var result() As GraphNode = SolveBFS(graph, New Point(0, 0), New Point(5, 2))
+		  Var result() As GraphNode = SolveBFS(graph, mStartPoint, mDestination)
 		  Return result.Count - 1
 		  
 		  // possiblePaths.Value(0) = CalculatePath(grid, width, height, True)
@@ -113,7 +137,31 @@ Inherits WebThread
 
 	#tag Method, Flags = &h21
 		Private Function CalculatePart2(puzzleInput As String) As Integer
-		  Return -1
+		  Var startingPoints() As Point
+		  
+		  Var lines() As String = puzzleInput.Split(EndOfLine)
+		  Var possiblePaths As New Dictionary
+		  
+		  Var width As Integer = lines(0).Length
+		  Var height As Integer = lines.Count
+		  
+		  Var graph As Dictionary = BuildGraphForPuzzle(width, height, lines)
+		  For Each entry As DictionaryEntry In graph
+		    Var node As GraphNode = entry.Value
+		    If node.Height = Asc("a") Then
+		      startingPoints.Add(New Point(node.Position.X, node.Position.Y))
+		    End If
+		  Next
+		  
+		  Var minimumSteps As Integer = -1
+		  For Each startingPoint As Point In startingPoints
+		    graph = BuildGraphForPuzzle(width, height, lines)
+		    Var steps() As GraphNode = SolveBFS(graph, startingPoint, mDestination)
+		    If minimumSteps = -1 Then minimumSteps = steps.Count - 1
+		    minimumSteps = Min(minimumSteps, steps.Count - 1)
+		  Next
+		  
+		  Return minimumSteps
 		End Function
 	#tag EndMethod
 
@@ -297,7 +345,9 @@ Inherits WebThread
 		      If visitedNodes.IndexOf(neighbor) = -1 Then
 		        queue.Add(neighbor)
 		        visitedNodes.Add(neighbor)
-		        neighbor.FoundBy = current
+		        If neighbor.FoundBy = Nil And current.FoundBy <> neighbor Then
+		          neighbor.FoundBy = current
+		        End If
 		        If neighbor.Key = GraphNode.KeyFromPosition(endAt) Then
 		          lastNode = neighbor
 		          Exit While
