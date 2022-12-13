@@ -53,9 +53,6 @@ Inherits WebThread
 
 	#tag Method, Flags = &h21
 		Private Function CalculatePart2(puzzleInput As String) As Integer
-		  // 5566 too low
-		  Return -1
-		  
 		  Var packets() As String
 		  Var data() As String = puzzleInput.Split(EndOfLine)
 		  For Each packetData As String In data
@@ -67,10 +64,6 @@ Inherits WebThread
 		  packets.Add("[[6]]")
 		  
 		  packets.Sort(WeakAddressOf SortPackets)
-		  
-		  For Each packet As String In packets
-		    System.DebugLog(packet)
-		  Next
 		  
 		  Var firstIndex As Integer = packets.IndexOf("[[2]]") + 1
 		  Var secondIndex As Integer = packets.IndexOf("[[6]]") + 1
