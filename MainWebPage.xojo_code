@@ -72,7 +72,7 @@ Begin WebPage MainWebPage
       LockVertical    =   False
       PanelCount      =   25
       Scope           =   2
-      SelectedPanelIndex=   10
+      SelectedPanelIndex=   11
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -381,7 +381,7 @@ Begin WebPage MainWebPage
          _mDesignWidth   =   0
          _mPanelIndex    =   -1
       End
-      Begin Day11Container Day11Container1
+      Begin Day11Container Day11
          ControlID       =   ""
          Enabled         =   True
          Height          =   630
@@ -397,11 +397,41 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   10
+         PanelIndex      =   "10"
          Parent          =   "Pages"
          Scope           =   2
          ScrollDirection =   0
          TabIndex        =   12
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day12Container Day12
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   11
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   13
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -423,7 +453,7 @@ End
 		Sub Opening()
 		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer", _
 		  "Camp Cleanup", "Supply Stacks", "Tuning Trouble", "Space Left", "Treetop Tree House", _
-		  "Rope Bridge", "Cathode-Ray Tube", "Monkey in the Middle")
+		  "Rope Bridge", "Cathode-Ray Tube", "Monkey in the Middle", "Hill Climbing Algorithm")
 		  
 		  Var puzzlesMenu As New WebMenuItem
 		  For i As Integer = 0 To sections.LastIndex
@@ -446,7 +476,8 @@ End
 #tag Events Pages
 	#tag Event
 		Sub Opening()
-		  Me.SelectedPanelIndex = 10
+		  // Go directly to the last panel
+		  Pages.SelectedPanelIndex = 11
 		End Sub
 	#tag EndEvent
 #tag EndEvents
