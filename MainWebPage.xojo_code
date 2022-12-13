@@ -72,7 +72,7 @@ Begin WebPage MainWebPage
       LockVertical    =   False
       PanelCount      =   25
       Scope           =   2
-      SelectedPanelIndex=   11
+      SelectedPanelIndex=   12
       TabIndex        =   1
       Tooltip         =   ""
       Top             =   56
@@ -427,11 +427,41 @@ Begin WebPage MainWebPage
          LockRight       =   True
          LockTop         =   True
          LockVertical    =   False
-         PanelIndex      =   11
+         PanelIndex      =   "11"
          Parent          =   "Pages"
          Scope           =   2
          ScrollDirection =   0
          TabIndex        =   13
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   56
+         Visible         =   True
+         Width           =   906
+         _mDesignHeight  =   0
+         _mDesignWidth   =   0
+         _mPanelIndex    =   -1
+      End
+      Begin Day13Container Day13
+         ControlID       =   ""
+         Enabled         =   True
+         Height          =   630
+         Index           =   -2147483648
+         Indicator       =   0
+         LayoutDirection =   0
+         LayoutType      =   0
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockHorizontal  =   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         LockVertical    =   False
+         PanelIndex      =   12
+         Parent          =   "Pages"
+         Scope           =   2
+         ScrollDirection =   0
+         TabIndex        =   14
          TabStop         =   True
          Tooltip         =   ""
          Top             =   56
@@ -453,7 +483,8 @@ End
 		Sub Opening()
 		  Var sections() As String = Array("Calories", "Rock, Paper, Scissors", "Rucksack Reorganizer", _
 		  "Camp Cleanup", "Supply Stacks", "Tuning Trouble", "Space Left", "Treetop Tree House", _
-		  "Rope Bridge", "Cathode-Ray Tube", "Monkey in the Middle", "Hill Climbing Algorithm")
+		  "Rope Bridge", "Cathode-Ray Tube", "Monkey in the Middle", "Hill Climbing Algorithm", _
+		  "Distress Signal")
 		  
 		  Var puzzlesMenu As New WebMenuItem
 		  For i As Integer = 0 To sections.LastIndex
@@ -477,7 +508,7 @@ End
 	#tag Event
 		Sub Opening()
 		  // Go directly to the last panel
-		  Pages.SelectedPanelIndex = 11
+		  Pages.SelectedPanelIndex = 12
 		End Sub
 	#tag EndEvent
 #tag EndEvents
