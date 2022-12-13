@@ -173,13 +173,13 @@ Inherits WebThread
 		  Next
 		  
 		  For Each node As GraphNode In visitedNodes
-		    If node.Char <> "S" And node.Char <> "E" Then
+		    If Asc(node.Char) <> Asc("S") And Asc(node.Char) <> Asc("E") Then
 		      pathGrid(node.Position.X, node.Position.Y) = "🔲"
 		    End If
 		  Next
 		  
 		  For Each node As GraphNode In path
-		    If node.Char <> "S" And node.Char <> "E" Then
+		    If Asc(node.Char) <> Asc("S") And Asc(node.Char) <> Asc("E") Then
 		      pathGrid(node.Position.X, node.Position.Y) = "⏺"
 		    End If
 		    
