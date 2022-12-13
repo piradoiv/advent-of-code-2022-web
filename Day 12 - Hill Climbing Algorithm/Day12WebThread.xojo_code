@@ -5,14 +5,16 @@ Inherits WebThread
 		Sub Run()
 		  Var update As Dictionary
 		  
+		  Var path() As GraphNode = CreateGraphAndSolve(InputValue)
+		  
 		  update = New Dictionary
 		  update.Value("type") = "part1"
-		  update.Value("result") = CalculatePart1(InputValue)
+		  update.Value("result") = CalculatePart1(path)
 		  AddUserInterfaceUpdate(update)
 		  
 		  update = New Dictionary
 		  update.Value("type") = "part2"
-		  update.Value("result") = CalculatePart2(InputValue)
+		  update.Value("result") = CalculatePart2(path)
 		  AddUserInterfaceUpdate(update)
 		  
 		  AddUserInterfaceUpdate("type" : "finish")
@@ -20,8 +22,8 @@ Inherits WebThread
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h0
-		Function Build2DGraph(width As Integer, height As Integer) As Dictionary
+	#tag Method, Flags = &h21
+		Private Function Build2DGraph(width As Integer, height As Integer) As Dictionary
 		  Var result As New Dictionary
 		  
 		  Var directions() As Pair = Array(-1 : 0, 1 : 0, 0 : -1, 0 : 1)
@@ -64,32 +66,28 @@ Inherits WebThread
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function BuildGraphForPuzzle(width As Integer, height As Integer, lines() As String) As Dictionary
-		  Var graph As Dictionary = Build2DGraph(width, height)
-		  
-		  For y As Integer = 0 To lines.LastIndex
-		    Var chars() As String = lines(y).Split("")
-		    For x As Integer = 0 To width - 1
-		      If Asc(chars(x)) = Asc("S") Then
-		        mStartPoint = New Point(x, y)
-		        chars(x) = "a"
-		      ElseIf Asc(chars(x)) = Asc("E") Then
-		        mDestination = New Point(x, y)
-		        chars(x) = "z"
-		      End If
-		      
-		      Var node As GraphNode = graph.Value(GraphNode.KeyFromPosition(New Point(x, y)))
-		      node.Height = Asc(chars(x))
-		    Next
-		  Next
-		  
-		  Return graph
+	#tag Method, Flags = &h21
+		Private Function CalculatePart1(path() As GraphNode) As Integer
+		  Return path.Count - 1
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function CalculatePart1(puzzleInput As String) As Integer
+		Private Function CalculatePart2(path() As GraphNode) As Integer
+		  Var steps() As GraphNode
+		  For i As Integer = path.LastIndex DownTo 0
+		    steps.Add(path(i))
+		    If path(i).Height = Asc("a") Then
+		      Exit For
+		    End If
+		  Next
+		  
+		  Return steps.Count - 1
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function CreateGraphAndSolve(puzzleInput As String) As GraphNode()
 		  Var lines() As String = puzzleInput.Split(EndOfLine)
 		  Var possiblePaths As New Dictionary
 		  
@@ -112,134 +110,7 @@ Inherits WebThread
 		    Next
 		  Next
 		  
-		  Var result() As GraphNode = SolveBFS(graph, mStartPoint, mDestination)
-		  Return result.Count - 1
-		  
-		  // possiblePaths.Value(0) = CalculatePath(grid, width, height, True)
-		  // possiblePaths.Value(1) = CalculatePath(grid, width, height, False)
-		  // 
-		  // DrawPath(puzzleInput, grid, possiblePaths, width, height)
-		  
-		  // 469 is too high
-		  Var minimumSteps As Integer = -1
-		  For Each entry As DictionaryEntry In possiblePaths
-		    Var path() As Point = entry.Value
-		    If minimumSteps = -1 Then
-		      minimumSteps = path.Count - 1
-		    Else
-		      minimumSteps = Min(minimumSteps, path.Count - 1)
-		    End If
-		  Next
-		  
-		  Return minimumSteps
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function CalculatePart2(puzzleInput As String) As Integer
-		  Var startingPoints() As Point
-		  
-		  Var lines() As String = puzzleInput.Split(EndOfLine)
-		  Var possiblePaths As New Dictionary
-		  
-		  Var width As Integer = lines(0).Length
-		  Var height As Integer = lines.Count
-		  
-		  Var graph As Dictionary = BuildGraphForPuzzle(width, height, lines)
-		  For Each entry As DictionaryEntry In graph
-		    Var node As GraphNode = entry.Value
-		    If node.Height = Asc("a") Then
-		      startingPoints.Add(New Point(node.Position.X, node.Position.Y))
-		    End If
-		  Next
-		  
-		  Var minimumSteps As Integer = -1
-		  For Each startingPoint As Point In startingPoints
-		    graph = BuildGraphForPuzzle(width, height, lines)
-		    Var steps() As GraphNode = SolveBFS(graph, startingPoint, mDestination)
-		    If minimumSteps = -1 Then minimumSteps = steps.Count - 1
-		    minimumSteps = Min(minimumSteps, steps.Count - 1)
-		  Next
-		  
-		  Return minimumSteps
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function CalculatePath(grid(, ) As String, width As Integer, height As Integer, lowest As Boolean) As Point()
-		  Var currentPos As Point = New Point(mStartPoint.X, mStartPoint.Y)
-		  
-		  Var path() As Point
-		  path.Add(currentPos)
-		  // DrawPath(puzzleInput, grid, path, width, height, path(0), mDestination)
-		  
-		  Var directions() As Pair = Array(1 : 0, 0 : 1, -1 : 0, 0 : -1)
-		  Var visitedPoints(-1, -1) As Boolean
-		  visitedPoints.ResizeTo(width, height)
-		  visitedPoints(currentPos.X, currentPos.Y) = True
-		  Var newX, newY As Integer
-		  While currentPos.DistanceTo(mDestination) > 0
-		    Var possibilities() As Point
-		    For Each direction As Pair In directions
-		      newX = currentPos.X + direction.Left
-		      newY = currentPos.Y + direction.Right
-		      If newX < 0 Or newX > width Or newY < 0 Or newY > height Then
-		        Continue
-		      End If
-		      Var char As String = grid(newX, newY)
-		      Var currentPosChar As String = grid(currentPos.X, currentPos.Y)
-		      If Asc(char) - Asc(grid(currentPos.X, currentPos.Y)) > 1 Then
-		        Continue
-		      End If
-		      If visitedPoints(newX, newY) Then
-		        Continue
-		      End If
-		      
-		      possibilities.Add(New Point(newX, newY))
-		    Next
-		    
-		    If possibilities.Count = 0 Then
-		      path.RemoveAt(path.LastIndex)
-		      currentPos.X = path(path.LastIndex).X
-		      currentPos.Y = path(path.LastIndex).Y
-		      // DrawPath(puzzleInput, grid, path, width, height, path(0), mDestination)
-		      Continue
-		    End If
-		    
-		    possibilities.Sort(If(lowest, AddressOf SortByLowestDistance, AddressOf SortByLongerDistance))
-		    Var winner As Point = possibilities(0)
-		    
-		    visitedPoints(winner.X, winner.Y) = True
-		    path.Add(winner)
-		    currentPos = winner
-		    // DrawPath(puzzleInput, grid, path, width, height, path(0), mDestination)
-		  Wend
-		  
-		  // DrawPath(puzzleInput, grid, path, width, height, path(0), mDestination)
-		  
-		  // Optimize removing redundant steps
-		  #If True
-		    For i As Integer = 0 To path.LastIndex - 2
-		      Var stepPos As Point = path(i)
-		      Var nextPos As Point = path(i + 1)
-		      For Each direction As Pair In directions
-		        Var checkPos As Point = New Point(stepPos.X + direction.Left, stepPos.Y + direction.Right)
-		        Var index As Integer = GetPointIndex(path, checkPos)
-		        If index = -1 Or index <= i + 1 Then Continue
-		        If Asc(grid(checkPos.X, checkPos.Y)) <= Asc(grid(stepPos.X, stepPos.Y)) + 1 Then
-		          System.DebugLog(checkPos.X.ToString + "," + checkPos.Y.ToString + " seems to be redundant")
-		          For j As Integer = index - 1 DownTo i + 1
-		            path.RemoveAt(j)
-		          Next
-		          i = GetPointIndex(path, checkPos)
-		        End If
-		        // DrawPath(puzzleInput, grid, path, width, height, path(0), mDestination)
-		        // Sleep(100)
-		      Next
-		    Next
-		  #EndIf
-		  
-		  Return path
+		  Return SolveBFS(graph, mStartPoint, mDestination)
 		End Function
 	#tag EndMethod
 
@@ -313,20 +184,7 @@ Inherits WebThread
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function GetPointIndex(path() As Point, checkPos As Point) As Integer
-		  For i As Integer = 0 To path.LastIndex
-		    Var current As Point = New Point(path(i).X, path(i).Y)
-		    If current.X = checkPos.X And current.Y = checkPos.Y Then
-		      Return i
-		    End If
-		  Next
-		  
-		  Return -1
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function SolveBFS(graph As Dictionary, beginAt As Point, endAt As Point) As GraphNode()
+		Private Function SolveBFS(graph As Dictionary, beginAt As Point, endAt As Point) As GraphNode()
 		  Var result() As GraphNode
 		  Var lastNode As GraphNode
 		  Var startingNode As GraphNode = graph.Value(GraphNode.KeyFromPosition(beginAt))
@@ -356,6 +214,8 @@ Inherits WebThread
 		    Next
 		  Wend
 		  
+		  If lastNode = Nil Then Return result
+		  
 		  result.Add(lastNode)
 		  While lastNode.FoundBy <> Nil
 		    result.AddAt(0, lastNode.FoundBy)
@@ -363,18 +223,6 @@ Inherits WebThread
 		  Wend
 		  
 		  Return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function SortByLongerDistance(a As Point, b As Point) As Integer
-		  Return Sign(b.DistanceTo(mDestination) - a.DistanceTo(mDestination))
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function SortByLowestDistance(a As Point, b As Point) As Integer
-		  Return Sign(a.DistanceTo(mDestination) - b.DistanceTo(mDestination))
 		End Function
 	#tag EndMethod
 
