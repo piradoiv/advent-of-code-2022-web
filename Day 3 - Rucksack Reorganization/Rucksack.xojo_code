@@ -31,7 +31,7 @@ Protected Class Rucksack
 
 	#tag Method, Flags = &h0
 		Shared Function GetItemValue(item As String) As Integer
-		  Var value As Integer = Asc(item) - Asc("a") + 1
+		  Var value As Integer = item.Asc - Asc("a") + 1
 		  Return If(value > 0, value, value + 58)
 		End Function
 	#tag EndMethod
@@ -120,7 +120,7 @@ Protected Class Rucksack
 			Group="Behavior"
 			InitialValue=""
 			Type="String"
-			EditorType=""
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

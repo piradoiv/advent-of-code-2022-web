@@ -103,7 +103,7 @@ Inherits WebThread
 		      Var node As GraphNode = graph.Value(GraphNode.KeyFromPosition(New Point(x, y)))
 		      node.Char = chars(x)
 		      
-		      Select Case Asc(chars(x))
+		      Select Case chars(x).Asc
 		      Case Asc("S")
 		        startPoint = New Point(x, y)
 		        node.Height = Asc("a")
@@ -111,7 +111,7 @@ Inherits WebThread
 		        endPoint = New Point(x, y)
 		        node.Height = Asc("z")
 		      Else
-		        node.Height = Asc(chars(x))
+		        node.Height = chars(x).Asc
 		      End Select
 		    Next
 		  Next
@@ -143,7 +143,7 @@ Inherits WebThread
 		  
 		  Var closestLowerPoint As Point
 		  For i As Integer = path.LastIndex DownTo 0
-		    If path(i).Char = "a" Or Asc(path(i).Char) = Asc("S") Then
+		    If path(i).Char = "a" Or path(i).Char.Asc = Asc("S") Then
 		      closestLowerPoint = path(i).Position
 		      Exit For
 		    End If
@@ -173,13 +173,13 @@ Inherits WebThread
 		  Next
 		  
 		  For Each node As GraphNode In visitedNodes
-		    If Asc(node.Char) <> Asc("S") And Asc(node.Char) <> Asc("E") Then
+		    If node.Char.Asc <> Asc("S") And node.Char.Asc <> Asc("E") Then
 		      pathGrid(node.Position.X, node.Position.Y) = "🔲"
 		    End If
 		  Next
 		  
 		  For Each node As GraphNode In path
-		    If Asc(node.Char) <> Asc("S") And Asc(node.Char) <> Asc("E") Then
+		    If node.Char.Asc <> Asc("S") And node.Char.Asc <> Asc("E") Then
 		      pathGrid(node.Position.X, node.Position.Y) = "⏺"
 		    End If
 		    
