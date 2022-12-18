@@ -7,8 +7,8 @@ Inherits WebThread
 		  
 		  update = New Dictionary
 		  update.Value("type") = "part1"
-		  // update.Value("result") = CalculatePart1(InputValue)
-		  // AddUserInterfaceUpdate(update)
+		  update.Value("result") = CalculatePart1(InputValue)
+		  AddUserInterfaceUpdate(update)
 		  
 		  update = New Dictionary
 		  update.Value("type") = "part2"
@@ -26,11 +26,18 @@ Inherits WebThread
 		  #Pragma NilObjectChecking False
 		  #Pragma StackOverflowChecking False
 		  
+		  AddUserInterfaceUpdate("type" : "update_status", _
+		  "message" : "Part 1: Parsing input", _
+		  "percentage" : 0)
+		  
 		  Const targetY = 2000000
 		  Var sensors() As ScannerSensor = ParseSensors(puzzleInput)
 		  Var boundaries As Rect = GetBoundaries(sensors)
 		  
 		  // Remove sensors operating outside of our area of interest
+		  AddUserInterfaceUpdate("type" : "update_status", _
+		  "message" : "Part 1: Removing unneeded sensors", _
+		  "percentage" : 0)
 		  For i As Integer = sensors.LastIndex DownTo 0
 		    Var sensor As ScannerSensor = sensors(i)
 		    If sensor.Bounds.Top > targetY Or sensor.Bounds.Bottom < targetY Then
@@ -41,14 +48,23 @@ Inherits WebThread
 		  // Add places where there cannot be a beacon
 		  Var posibilities As New Dictionary
 		  For x As Double = boundaries.Left To boundaries.Right
+		    If x Mod 500000 = 0 Then
+		      AddUserInterfaceUpdate("type" : "update_status", _
+		      "message" : "Part 1: Discovering places", _
+		      "percentage" : (x - boundaries.Left) / (boundaries.Right - boundaries.Left))
+		    End If
 		    For Each sensor As ScannerSensor In sensors
 		      If Abs(sensor.Position.X - x) + Abs(sensor.Position.Y - targetY) <= sensor.Radius Then
 		        posibilities.Value(x) = True
 		      End If
 		    Next
 		  Next
+		  AddUserInterfaceUpdate("type" : "update_status", _
+		  "message" : "Part 1: Discovering places", _
+		  "percentage" : 1)
 		  
 		  // Remove places where there is already a sensor or a beacon
+		  AddUserInterfaceUpdate("type" : "update_status", "message" : "Part 1: Wrapping up", "percentage" : 0)
 		  For Each sensor As ScannerSensor In sensors
 		    If sensor.ClosestBeacon.Y = targetY And posibilities.HasKey(sensor.ClosestBeacon.X) Then
 		      posibilities.Remove(sensor.ClosestBeacon.X)
@@ -65,15 +81,29 @@ Inherits WebThread
 
 	#tag Method, Flags = &h21
 		Private Function CalculatePart2(puzzleInput As String) As Integer
+		  #Pragma BoundsChecking False
+		  #Pragma NilObjectChecking False
+		  #Pragma StackOverflowChecking False
+		  
+		  AddUserInterfaceUpdate("type" : "update_status", "message" : "Part 2: Parsing input", "percentage" : 0)
 		  Var sensors() As ScannerSensor = ParseSensors(puzzleInput)
+		  AddUserInterfaceUpdate("type" : "update_status", "message" : "Part 2: Getting candidates", "percentage" : 0)
 		  Var candidates() As Point = GetCandidatesForBeacon(sensors, 4000000)
 		  
-		  For Each candidate As Point In candidates
+		  For i As Integer = 0 To candidates.LastIndex
+		    Var candidate As Point = candidates(i)
+		    If i Mod 1000 = 0 Then
+		      AddUserInterfaceUpdate("type" : "update_status", _
+		      "message" : "Part 2: Checking candidates", _
+		      "percentage" : i / candidates.LastIndex)
+		    End If
 		    If Not IsCoveredBySensors(candidate, sensors) Then
 		      System.DebugLog(candidate.X.ToString + ", " + candidate.Y.ToString)
 		      Return 4000000 * candidate.X + candidate.Y
 		    End If
 		  Next
+		  
+		  AddUserInterfaceUpdate("type" : "update_status", "message" : "Done!", "percentage" : 1)
 		End Function
 	#tag EndMethod
 
@@ -96,15 +126,23 @@ Inherits WebThread
 		  Var result() As Point
 		  
 		  Var possibleSensors() As ScannerSensor
-		  For Each sensor As ScannerSensor In sensors
+		  For i As Integer = 0 To sensors.LastIndex
+		    Var sensor As ScannerSensor = sensors(i)
+		    AddUserInterfaceUpdate("type" : "update_status", _
+		    "message" : "Part 2: Checking sensor #" + i.ToString, _
+		    "percentage" : i / sensors.LastIndex)
 		    If sensor.Bounds.Right >= 0 And sensor.Bounds.Left <= limit And _
 		      sensor.Bounds.Top >= 0 And sensor.Bounds.Bottom <= limit Then
 		      possibleSensors.Add(sensor)
 		    End If
 		  Next
 		  
-		  For Each sensor As ScannerSensor In possibleSensors
+		  For i As Integer = 0 To possibleSensors.LastIndex
+		    Var sensor As ScannerSensor = possibleSensors(i)
 		    Var perimeter() As Point = sensor.GetPerimeter
+		    AddUserInterfaceUpdate("type" : "update_status", _
+		    "message" : "Part 2: Checking sensor perimeters", _
+		    "percentage" : i / possibleSensors.LastIndex)
 		    For Each currentPoint As Point In sensor.GetPerimeter
 		      result.Add(currentPoint)
 		    Next
